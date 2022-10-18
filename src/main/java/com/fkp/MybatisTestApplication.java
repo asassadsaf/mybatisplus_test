@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.InnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import com.fkp.util.SqlSessionFactoryUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -16,7 +17,7 @@ public class MybatisTestApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MybatisTestApplication.class, args);
-
+		System.out.println(SqlSessionFactoryUtils.sqlSessionFactory);
 	}
 
 	private final String dbtype = "mysql";

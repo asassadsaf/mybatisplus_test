@@ -12,8 +12,12 @@ import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerIntercept
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fkp.domain.KmsServer;
 import com.fkp.mapper.TestMapper;
+import com.fkp.util.MapperUtils;
+import com.fkp.util.SqlSessionFactoryUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -77,6 +81,28 @@ class MybatisTestApplicationTests {
 		System.out.println(page1.getSize());
 		System.out.println(page1.getTotal());
 		System.out.println(page1.getRecords().size());
+	}
+
+	@Test
+	public void test4(){
+		SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtils.sqlSessionFactory;
+		try (SqlSession sqlSession = sqlSessionFactory.openSession()){
+			TestMapper mapper = sqlSession.getMapper(TestMapper.class);
+			List<KmsServer> kmsServers = mapper.selectList(null);
+			System.out.println(kmsServers);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void test5(){
+		MapperUtils mapperUtils = new MapperUtils();
+		String s = mapperUtils.selectAll();
+		String s2 = mapperUtils.selectAll();
+		mapperUtils.closeSqlSession();
+		System.out.println(s);
+		System.out.println(s2);
 	}
 
 }
