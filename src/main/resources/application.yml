@@ -4,9 +4,9 @@ spring:
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/seckmsfb?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+      url: jdbc:mysql://localhost:3306/testdb?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
       username: root
-      password: SWXA1234@DAR_Mysql
+      password: fkp123456
       initialSize: 5
       minIdle: 5
       maxActive: 20
@@ -20,6 +20,7 @@ spring:
       poolPreparedStatements: true
       maxPoolPreparedStatementPerConnectionSize: 20
       filters: stat,wall
+    type: com.alibaba.druid.pool.DruidDataSource
 mybatis:
   databaseType: mysql
 mybatis-plus:
