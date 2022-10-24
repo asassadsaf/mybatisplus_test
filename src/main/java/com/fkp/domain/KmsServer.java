@@ -1,11 +1,15 @@
 package com.fkp.domain;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.beans.Transient;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author: fkp
@@ -46,7 +50,8 @@ public class KmsServer implements Serializable {
      */
     private String clientcertAuth;
 
-    private String trustedCaId;
+//    @TableField("caList")
+    private List<String> caList;
 
     private String serverCertificateId;
 

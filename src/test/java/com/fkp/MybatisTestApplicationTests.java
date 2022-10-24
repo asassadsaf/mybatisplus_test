@@ -38,28 +38,35 @@ class MybatisTestApplicationTests {
 	@Autowired
 	private ThreadPoolTaskExecutor executor;
 
-	@Test
-	public void test4(){
-		SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtils.sqlSessionFactory;
-		try (SqlSession sqlSession = sqlSessionFactory.openSession()){
-			TestMapper mapper = sqlSession.getMapper(TestMapper.class);
-			List<KmsServer> kmsServers = mapper.selectList(null);
-			System.out.println(kmsServers);
-		}catch (Exception e){
-			e.printStackTrace();
-		}
-	}
+//	@Test
+//	public void test4(){
+//		SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtils.sqlSessionFactory;
+//		try (SqlSession sqlSession = sqlSessionFactory.openSession()){
+//			TestMapper mapper = sqlSession.getMapper(TestMapper.class);
+//			List<KmsServer> kmsServers = mapper.selectList(null);
+//			System.out.println(kmsServers);
+//		}catch (Exception e){
+//			e.printStackTrace();
+//		}
+//	}
+//
+//	@Test
+//	public void test5(){
+//		MapperUtils mapperUtils = new MapperUtils();
+//		String s = mapperUtils.selectAll();
+//		String s2 = mapperUtils.selectAll();
+//		mapperUtils.closeSqlSession();
+//		System.out.println(s);
+//		System.out.println(s2);
+//		List<KmsServer> kmsServers = testMapper.selectList(null);
+//		System.out.println(kmsServers);
+//	}
 
 	@Test
-	public void test5(){
-		MapperUtils mapperUtils = new MapperUtils();
-		String s = mapperUtils.selectAll();
-		String s2 = mapperUtils.selectAll();
-		mapperUtils.closeSqlSession();
-		System.out.println(s);
-		System.out.println(s2);
-		List<KmsServer> kmsServers = testMapper.selectList(null);
-		System.out.println(kmsServers);
+	public void test6(){
+		KmsServer kmsServer = testMapper.findById("001");
+
+		System.out.println(kmsServer);
 	}
 
 //	@Test

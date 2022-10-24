@@ -21,10 +21,10 @@ public class MapperUtils {
 
     }
 
-    public String selectAll(){
-        List<KmsServer> kmsServers = testMapper.selectList(null);
-        return JSON.toJSONString(kmsServers);
-    }
+//    public String selectAll(){
+//        List<KmsServer> kmsServers = testMapper.selectList(null);
+//        return JSON.toJSONString(kmsServers);
+//    }
 
     public void closeSqlSession(){
         this.sqlSession.close();

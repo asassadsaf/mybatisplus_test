@@ -11,7 +11,6 @@
         <result column="port" jdbcType="VARCHAR" property="port" />
         <result column="pwd_auth" jdbcType="VARCHAR" property="pwdAuth" />
         <result column="clientcert_auth" jdbcType="VARCHAR" property="clientcertAuth" />
-        <result column="trusted_ca_id" jdbcType="VARCHAR" property="trustedCaId" />
         <result column="server_certificate_id" jdbcType="VARCHAR" property="serverCertificateId" />
         <result column="use_ssl" jdbcType="VARCHAR" property="useSsl" />
         <result column="white_list" jdbcType="VARCHAR" property="whiteList" />
@@ -24,9 +23,21 @@
         <result column="updateby" jdbcType="VARCHAR" property="updateby" />
         <result column="updatedate" jdbcType="TIMESTAMP" property="updatedate" />
         <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <collection property="caList" ofType="java.lang.String" >
+            <result column="ca"/>
+        </collection>
     </resultMap>
 
     <select id="findPage22" resultType="com.fkp.domain.KmsServer">
-        select * from kms_server where FIND_IN_SET('visa',kmsuser) and id=#{obj.id}
+        select caList from kms_server where FIND_IN_SET('visa',kmsuser) and id=#{obj.id}
+    </select>
+
+    <select id="findById" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+        a.id as id, substring_index(substring_index(a.caList,',',b.help_topic_id + 1),',' ,- 1) AS ca
+        FROM
+        kms_server a
+        JOIN mysql.help_topic b ON b.help_topic_id &lt; (length(a.caList) - length( replace(a.caList, ',', '')  ) + 1)
+        where a.id = #{id}
     </select>
 </mapper>

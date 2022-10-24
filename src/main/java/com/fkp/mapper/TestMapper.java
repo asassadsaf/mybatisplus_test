@@ -7,7 +7,9 @@ import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.fkp.domain.KmsServer;
 import org.apache.ibatis.annotations.Param;
 
-public interface TestMapper extends BaseMapper<KmsServer> {
+public interface TestMapper {
 
     <P extends IPage<KmsServer>> P findPage22(P page, @Param("obj") KmsServer obj);
+
+    KmsServer findById(String id);
 }
