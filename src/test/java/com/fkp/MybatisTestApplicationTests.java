@@ -1,31 +1,15 @@
 package com.fkp;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.baomidou.mybatisplus.annotation.DbType;
-import com.baomidou.mybatisplus.core.incrementer.DefaultIdentifierGenerator;
-import com.baomidou.mybatisplus.core.incrementer.IdentifierGenerator;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.inner.InnerInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.fkp.domain.KmsServer;
+import com.fkp.domain.LogConfiguration;
+import com.fkp.domain.LogConfigurationExample;
+import com.fkp.mapper.LogConfigurationMapper;
 import com.fkp.mapper.TestMapper;
-import com.fkp.util.MapperUtils;
-import com.fkp.util.SqlSessionFactoryUtils;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-import java.net.Inet4Address;
-import java.net.InetSocketAddress;
 import java.util.List;
 
 @SpringBootTest
@@ -36,7 +20,23 @@ class MybatisTestApplicationTests {
 	private TestMapper testMapper;
 
 	@Autowired
+	private LogConfigurationMapper logConfigurationMapper;
+
+	@Autowired
 	private ThreadPoolTaskExecutor executor;
+
+
+	@Test
+	public void test(){
+		Page<LogConfiguration> page = new Page<>();
+		page.setCurrent(2);
+		page.setSize(2);
+		LogConfigurationExample example = new LogConfigurationExample();
+		example.createCriteria().andIdBetween("1","3");
+		Page<LogConfiguration> logConfigurations = logConfigurationMapper.findPage(example,page);
+		List<LogConfiguration> records = logConfigurations.getRecords();
+		System.out.println(records);
+	}
 
 //	@Test
 //	public void test4(){
@@ -62,12 +62,12 @@ class MybatisTestApplicationTests {
 //		System.out.println(kmsServers);
 //	}
 
-	@Test
-	public void test6(){
-		KmsServer kmsServer = testMapper.findById("001");
-
-		System.out.println(kmsServer);
-	}
+//	@Test
+//	public void test6(){
+//		KmsServer kmsServer = testMapper.findById("001");
+//
+//		System.out.println(kmsServer);
+//	}
 
 //	@Test
 //	void contextLoads() {
