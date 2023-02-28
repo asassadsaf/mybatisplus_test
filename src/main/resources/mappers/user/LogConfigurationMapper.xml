@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkp.mapper.LogConfigurationMapper">
+  <resultMap id="BaseResultMap" type="com.fkp.domain.LogConfiguration">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="logName" jdbcType="VARCHAR" property="logName" />
+    <result column="logRotation" jdbcType="VARCHAR" property="logRotation" />
+    <result column="filesNum" jdbcType="INTEGER" property="filesNum" />
+    <result column="logLevel" jdbcType="INTEGER" property="logLevel" />
+    <result column="maxLogSize" jdbcType="INTEGER" property="maxLogSize" />
+    <result column="createby" jdbcType="VARCHAR" property="createby" />
+    <result column="createdate" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="updateby" jdbcType="VARCHAR" property="updateby" />
+    <result column="updatedate" jdbcType="TIMESTAMP" property="updatedate" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Example_Where_Clause_Page">
+    <where>
+      <foreach collection="obj.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, logName, logRotation, filesNum, logLevel, maxLogSize, createby, createdate, updateby, 
+    updatedate, remark
+  </sql>
+
+  <select id="findPage" parameterType="com.fkp.domain.LogConfigurationExample" resultMap="BaseResultMap">
+    select
+    <if test="obj.distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from log_configuration
+    <if test="obj != null">
+      <include refid="Example_Where_Clause_Page" />
+    </if>
+    <if test="obj.orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.fkp.domain.LogConfigurationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from log_configuration
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from log_configuration
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from log_configuration
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fkp.domain.LogConfigurationExample">
+    delete from log_configuration
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fkp.domain.LogConfiguration">
+    insert into log_configuration (id, logName, logRotation, 
+      filesNum, logLevel, maxLogSize, 
+      createby, createdate, updateby, 
+      updatedate, remark)
+    values (#{id,jdbcType=VARCHAR}, #{logName,jdbcType=VARCHAR}, #{logRotation,jdbcType=VARCHAR}, 
+      #{filesNum,jdbcType=INTEGER}, #{logLevel,jdbcType=INTEGER}, #{maxLogSize,jdbcType=INTEGER}, 
+      #{createby,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{updateby,jdbcType=VARCHAR}, 
+      #{updatedate,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fkp.domain.LogConfiguration">
+    insert into log_configuration
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="logName != null">
+        logName,
+      </if>
+      <if test="logRotation != null">
+        logRotation,
+      </if>
+      <if test="filesNum != null">
+        filesNum,
+      </if>
+      <if test="logLevel != null">
+        logLevel,
+      </if>
+      <if test="maxLogSize != null">
+        maxLogSize,
+      </if>
+      <if test="createby != null">
+        createby,
+      </if>
+      <if test="createdate != null">
+        createdate,
+      </if>
+      <if test="updateby != null">
+        updateby,
+      </if>
+      <if test="updatedate != null">
+        updatedate,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="logName != null">
+        #{logName,jdbcType=VARCHAR},
+      </if>
+      <if test="logRotation != null">
+        #{logRotation,jdbcType=VARCHAR},
+      </if>
+      <if test="filesNum != null">
+        #{filesNum,jdbcType=INTEGER},
+      </if>
+      <if test="logLevel != null">
+        #{logLevel,jdbcType=INTEGER},
+      </if>
+      <if test="maxLogSize != null">
+        #{maxLogSize,jdbcType=INTEGER},
+      </if>
+      <if test="createby != null">
+        #{createby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateby != null">
+        #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null">
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fkp.domain.LogConfigurationExample" resultType="java.lang.Long">
+    select count(*) from log_configuration
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update log_configuration
+    <set>
+      <if test="row.id != null">
+        id = #{row.id,jdbcType=VARCHAR},
+      </if>
+      <if test="row.logName != null">
+        logName = #{row.logName,jdbcType=VARCHAR},
+      </if>
+      <if test="row.logRotation != null">
+        logRotation = #{row.logRotation,jdbcType=VARCHAR},
+      </if>
+      <if test="row.filesNum != null">
+        filesNum = #{row.filesNum,jdbcType=INTEGER},
+      </if>
+      <if test="row.logLevel != null">
+        logLevel = #{row.logLevel,jdbcType=INTEGER},
+      </if>
+      <if test="row.maxLogSize != null">
+        maxLogSize = #{row.maxLogSize,jdbcType=INTEGER},
+      </if>
+      <if test="row.createby != null">
+        createby = #{row.createby,jdbcType=VARCHAR},
+      </if>
+      <if test="row.createdate != null">
+        createdate = #{row.createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.updateby != null">
+        updateby = #{row.updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="row.updatedate != null">
+        updatedate = #{row.updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.remark != null">
+        remark = #{row.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update log_configuration
+    set id = #{row.id,jdbcType=VARCHAR},
+      logName = #{row.logName,jdbcType=VARCHAR},
+      logRotation = #{row.logRotation,jdbcType=VARCHAR},
+      filesNum = #{row.filesNum,jdbcType=INTEGER},
+      logLevel = #{row.logLevel,jdbcType=INTEGER},
+      maxLogSize = #{row.maxLogSize,jdbcType=INTEGER},
+      createby = #{row.createby,jdbcType=VARCHAR},
+      createdate = #{row.createdate,jdbcType=TIMESTAMP},
+      updateby = #{row.updateby,jdbcType=VARCHAR},
+      updatedate = #{row.updatedate,jdbcType=TIMESTAMP},
+      remark = #{row.remark,jdbcType=VARCHAR}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fkp.domain.LogConfiguration">
+    update log_configuration
+    <set>
+      <if test="logName != null">
+        logName = #{logName,jdbcType=VARCHAR},
+      </if>
+      <if test="logRotation != null">
+        logRotation = #{logRotation,jdbcType=VARCHAR},
+      </if>
+      <if test="filesNum != null">
+        filesNum = #{filesNum,jdbcType=INTEGER},
+      </if>
+      <if test="logLevel != null">
+        logLevel = #{logLevel,jdbcType=INTEGER},
+      </if>
+      <if test="maxLogSize != null">
+        maxLogSize = #{maxLogSize,jdbcType=INTEGER},
+      </if>
+      <if test="createby != null">
+        createby = #{createby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        createdate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateby != null">
+        updateby = #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null">
+        updatedate = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fkp.domain.LogConfiguration">
+    update log_configuration
+    set logName = #{logName,jdbcType=VARCHAR},
+      logRotation = #{logRotation,jdbcType=VARCHAR},
+      filesNum = #{filesNum,jdbcType=INTEGER},
+      logLevel = #{logLevel,jdbcType=INTEGER},
+      maxLogSize = #{maxLogSize,jdbcType=INTEGER},
+      createby = #{createby,jdbcType=VARCHAR},
+      createdate = #{createdate,jdbcType=TIMESTAMP},
+      updateby = #{updateby,jdbcType=VARCHAR},
+      updatedate = #{updatedate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
