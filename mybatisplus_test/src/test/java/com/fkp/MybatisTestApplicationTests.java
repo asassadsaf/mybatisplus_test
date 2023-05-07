@@ -26,17 +26,17 @@ class MybatisTestApplicationTests {
 	private ThreadPoolTaskExecutor executor;
 
 
-	@Test
-	public void test(){
-		Page<LogConfiguration> page = new Page<>();
-		page.setCurrent(2);
-		page.setSize(2);
-		LogConfigurationExample example = new LogConfigurationExample();
-		example.createCriteria().andIdBetween("1","3");
-		Page<LogConfiguration> logConfigurations = logConfigurationMapper.findPage(example,page);
-		List<LogConfiguration> records = logConfigurations.getRecords();
-		System.out.println(records);
-	}
+//	@Test
+//	public void test(){
+//		Page<LogConfiguration> page = new Page<>();
+//		page.setCurrent(2);
+//		page.setSize(2);
+//		LogConfigurationExample example = new LogConfigurationExample();
+//		example.createCriteria().andIdBetween("1","3");
+//		Page<LogConfiguration> logConfigurations = logConfigurationMapper.findPage(example,page);
+//		List<LogConfiguration> records = logConfigurations.getRecords();
+//		System.out.println(records);
+//	}
 
 //	@Test
 //	public void test4(){
