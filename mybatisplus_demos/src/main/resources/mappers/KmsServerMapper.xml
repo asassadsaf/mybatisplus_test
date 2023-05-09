@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkp.test.mapper.KmsServerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fkp.test.entity.KmsServer">
+        <id column="id" property="id" />
+        <result column="type_name" property="typeName" />
+        <result column="start_path" property="startPath" />
+        <result column="stop_path" property="stopPath" />
+        <result column="log_config_path" property="logConfigPath" />
+        <result column="devel_language" property="develLanguage" />
+        <result column="kms_user" property="kmsUser" />
+        <result column="create_date" property="createDate" />
+        <result column="update_date" property="updateDate" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, type_name, start_path, stop_path, log_config_path, devel_language, kms_user, create_date, update_date, remark
+    </sql>
+
+</mapper>
