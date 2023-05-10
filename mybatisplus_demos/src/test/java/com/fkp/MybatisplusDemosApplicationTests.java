@@ -90,4 +90,10 @@ class MybatisplusDemosApplicationTests {
         System.out.println(visa.stream().map(KmsServer::getTypeName).collect(Collectors.toList()));
     }
 
+    @Test
+    void test8() {
+        List<KmsServer> visa = kmsServerMapper.selectAllLikeKmsUser("hw");
+        System.out.println(visa);
+    }
+
 }

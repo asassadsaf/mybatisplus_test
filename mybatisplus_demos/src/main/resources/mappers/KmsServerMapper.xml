@@ -21,4 +21,19 @@
         id, type_name, start_path, stop_path, log_config_path, devel_language, kms_user, create_date, update_date, remark
     </sql>
 
+<!--    通过_databaseId参数区分数据库类型，做不同处理-->
+    <select id="selectAllLikeKmsUser" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from kms_server
+        <where>
+            <if test="_databaseId == 'sqlite'">
+                and kms_user like '%'|| #{kmsUser} || '%'
+            </if>
+            <if test="_databaseId == 'mysql'">
+                and kms_user like concat('%',#{kmsUser},'%')
+            </if>
+        </where>
+    </select>
+
 </mapper>

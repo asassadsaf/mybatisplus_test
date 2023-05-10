@@ -3,6 +3,8 @@ package com.fkp.test.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.fkp.test.entity.KmsServer;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
@@ -13,4 +15,5 @@ import com.fkp.test.entity.KmsServer;
  */
 public interface KmsServerMapper extends BaseMapper<KmsServer> {
 
+    List<KmsServer> selectAllLikeKmsUser(String kmsUser);
 }
