@@ -1,23 +1,19 @@
 package com.fkp.conf;
 
-import com.alibaba.druid.pool.DruidDataSource;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.inner.InnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.fkp.constant.DatabaseIdEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.mapping.DatabaseIdProvider;
 import org.apache.ibatis.mapping.VendorDatabaseIdProvider;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.sql.DataSource;
 import java.util.Properties;
 
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class MybatisPlusConfiguration {
 
     @Value("${mybatis.databaseType}")
@@ -50,12 +46,5 @@ public class MybatisPlusConfiguration {
         return provider;
     }
 
-    /**
-     * 配置DruidDataSource，否则配置文件中配置spring.datasource.druid.url(driver-class-name,xxx)无法自动识别数据源驱动类型，需要去掉druid，使用springboot-jdbc的配置
-     */
-    @Bean
-    @ConfigurationProperties(prefix = "spring.datasource.druid")
-    public DataSource dataSource(){
-        return new DruidDataSource();
-    }
+
 }

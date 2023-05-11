@@ -8,7 +8,7 @@ spring:
       password: SWXA1234@DAR_Mysql
 
 generator:
-  author: fengkunoeng
+  author: fengkunpeng
   outPutDir: D:\IDEAWorkSpace\mybatisplus_test\mp_generator\src\main\java
   parentPackage: com.test
   tableNames:
