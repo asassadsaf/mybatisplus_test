@@ -11,10 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 
@@ -94,6 +91,21 @@ class MybatisplusDemosApplicationTests {
     void test8() {
         List<KmsServer> visa = kmsServerMapper.selectAllLikeKmsUser("hw");
         System.out.println(visa);
+    }
+
+    /**
+     * sqlite数据库两个jdbc进程访问时，查询时能查询，不能修改；修改时不能查询，不能修改
+     */
+    @Test
+    void test9() {
+        KmsServer rest = kmsServerMapper.selectOne(Wrappers.lambdaQuery(KmsServer.class).eq(KmsServer::getTypeName, "STANDARD"));
+        for (int i = 0; i < 100000; i++) {
+            rest.setUpdateDate(new Date());
+            int insert = kmsServerMapper.updateById(rest);
+        }
+
+
+
     }
 
 }
