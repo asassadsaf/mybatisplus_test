@@ -99,10 +99,11 @@ class MybatisplusDemosApplicationTests {
     @Test
     void test9() {
         KmsServer rest = kmsServerMapper.selectOne(Wrappers.lambdaQuery(KmsServer.class).eq(KmsServer::getTypeName, "STANDARD"));
-        for (int i = 0; i < 100000; i++) {
-            rest.setUpdateDate(new Date());
+        System.out.println(rest);
+//        for (int i = 0; i < 100000; i++) {
+//            rest.setUpdateDate(new Date());
             int insert = kmsServerMapper.updateById(rest);
-        }
+//        }
 
 
 
