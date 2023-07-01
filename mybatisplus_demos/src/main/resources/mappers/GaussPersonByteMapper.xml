@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkp.gaussdb.mapper.GaussPersonByteMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fkp.gaussdb.entity.GaussPersonByte">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="byte_content_blob" property="byteContentBlob" />
+        <result column="byte_content_bytea" property="byteContentBytea" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, byte_content_blob, byte_content_bytea
+    </sql>
+
+</mapper>

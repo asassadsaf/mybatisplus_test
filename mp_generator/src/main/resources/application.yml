@@ -6,12 +6,12 @@ spring:
 #      url: jdbc:mysql://localhost:3306/seckmsfb?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
       driver-class-name: org.postgresql.Driver
       url: jdbc:postgresql://192.168.200.200/postgres
-      username: postgres
-      password: fkp123456
+      username: gaussdb
+      password: Fkp@123456
 
 generator:
   author: fengkunpeng
   outPutDir: E:\Example\Java\mybatisplus_test\mp_generator\src\main\java
-  parentPackage: com.fkp.postgresql.test
+  parentPackage: com.fkp.gaussdb.test
   tableNames:
-    - person_byte
+    - gauss_person_byte

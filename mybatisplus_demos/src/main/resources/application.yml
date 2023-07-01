@@ -8,13 +8,14 @@ spring:
 #      url: jdbc:mysql://localhost:3306/seckmsfb?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
 #      url: jdbc:sqlite:sqlite/seckmsfb.db
       url: jdbc:postgresql://192.168.200.200/postgres
-      username: postgres
-      password: fkp123456
+      username: gaussdb
+      password: Fkp@123456
 mybatis-plus:
   mapper-locations:
     - classpath:mappers/*.xml
+  type-handlers-package: com.fkp.type_handler
 mybatis:
-  databaseType: postgresql
+  databaseType: zenith
 logging:
   level:
-    root: info
+    root: debug

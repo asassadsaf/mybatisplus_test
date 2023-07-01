@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan({"com.fkp.test.mapper", "com.fkp.postgresql.mapper"})
+@MapperScan({"com.fkp.test.mapper", "com.fkp.postgresql.mapper", "com.fkp.gaussdb.mapper"})
 public class MybatisplusDemosApplication {
 
     public static void main(String[] args) {
