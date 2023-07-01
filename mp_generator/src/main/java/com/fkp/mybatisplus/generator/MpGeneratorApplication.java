@@ -3,9 +3,11 @@ package com.fkp.mybatisplus.generator;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
+import com.baomidou.mybatisplus.generator.config.converts.PostgreSqlTypeConvert;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.baomidou.mybatisplus.generator.keywords.MySqlKeyWordsHandler;
+import com.baomidou.mybatisplus.generator.keywords.PostgreSqlKeyWordsHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -26,13 +28,15 @@ public class MpGeneratorApplication {
         ParamsProperties.DataSourceProperties dataSourceProperties = paramsProperties.dataSourceProperties;
         ParamsProperties.ConfigProperties configProperties = paramsProperties.configProperties;
 
-        MySqlTypeConvert mySqlTypeConvert = new MySqlTypeConvert();
-        MySqlKeyWordsHandler mySqlKeyWordsHandler = new MySqlKeyWordsHandler();
+//        MySqlTypeConvert mySqlTypeConvert = new MySqlTypeConvert();
+//        MySqlKeyWordsHandler mySqlKeyWordsHandler = new MySqlKeyWordsHandler();
+        PostgreSqlKeyWordsHandler postgreSqlKeyWordsHandler = new PostgreSqlKeyWordsHandler();
+        PostgreSqlTypeConvert postgreSqlTypeConvert = new PostgreSqlTypeConvert();
 
         DataSourceConfig dataSourceConfig = new DataSourceConfig
                 .Builder(dataSourceProperties.getUrl(), dataSourceProperties.getUsername(), dataSourceProperties.getPassword())
-                .typeConvert(mySqlTypeConvert)
-                .keyWordsHandler(mySqlKeyWordsHandler)
+                .typeConvert(postgreSqlTypeConvert)
+                .keyWordsHandler(postgreSqlKeyWordsHandler)
                 .build();
 
         GlobalConfig globalConfig = new GlobalConfig.Builder()

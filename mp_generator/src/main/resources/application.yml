@@ -2,14 +2,16 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/seckmsfb?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
-      username: root
-      password: SWXA1234@DAR_Mysql
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      url: jdbc:mysql://localhost:3306/seckmsfb?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+      driver-class-name: org.postgresql.Driver
+      url: jdbc:postgresql://192.168.200.200/postgres
+      username: postgres
+      password: fkp123456
 
 generator:
   author: fengkunpeng
-  outPutDir: D:\IDEAWorkSpace\mybatisplus_test\mp_generator\src\main\java
-  parentPackage: com.test
+  outPutDir: E:\Example\Java\mybatisplus_test\mp_generator\src\main\java
+  parentPackage: com.fkp.postgresql.test
   tableNames:
-    - kms_server
+    - person_byte
