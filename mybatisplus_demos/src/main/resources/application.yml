@@ -4,18 +4,25 @@ spring:
     druid:
 #      driver-class-name: com.mysql.cj.jdbc.Driver
 #      driver-class-name: org.sqlite.JDBC
-      driver-class-name: org.postgresql.Driver
-#      url: jdbc:mysql://localhost:3306/seckmsfb?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
-#      url: jdbc:sqlite:sqlite/seckmsfb.db
-      url: jdbc:postgresql://192.168.200.200/postgres
-      username: gaussdb
-      password: Fkp@123456
+      driver-class-name: org.h2.Driver
+#      url: jdbc:h2:D:\IDEAWorkSpace\mybatisplus_test\mybatisplus_demos\h2\seckmsfb;AUTO_SERVER=TRUE
+      url: jdbc:h2:mem:seckmsfb
+      validation-query: SELECT 1
+  #      url: jdbc:mysql://localhost:3306/seckmsfb?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+#      url: jdbc:sqlite:sqlite/seckmsfb.db?date_string_format=yyyy-MM-dd HH:mm:ss
+#      username: root
+#      password: fkp123456
+  sql:
+    init:
+      schema-locations: classpath*:sql/seckmsfb_h2_DDL.sql #项目启动执行sql文件，对应DDL
+      #data-locations: classpath*:sql/seckmsfb_h2_DML.sql #项目启动执行sql文件，对应DML
+      mode: embedded  #初始化模式，默认EMBEDDED仅初始化嵌入式数据库,对于h2数据库需采用内存模式
 mybatis-plus:
   mapper-locations:
     - classpath:mappers/*.xml
   type-handlers-package: com.fkp.type_handler
 mybatis:
-  databaseType: zenith
+  databaseType: h2
 logging:
   level:
-    root: debug
+    root: info

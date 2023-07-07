@@ -1,6 +1,7 @@
 package com.fkp.conf;
 
 import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.core.incrementer.IdentifierGenerator;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.fkp.constant.DatabaseIdEnum;
@@ -44,6 +45,11 @@ public class MybatisPlusConfiguration {
         properties.setProperty(DatabaseIdEnum.SQLITE.getProductName(), DatabaseIdEnum.SQLITE.getFlagName());
         provider.setProperties(properties);
         return provider;
+    }
+
+    @Bean
+    public IdentifierGenerator myIdentifierGenerator(){
+        return new MyIdentifierGenerator();
     }
 
 

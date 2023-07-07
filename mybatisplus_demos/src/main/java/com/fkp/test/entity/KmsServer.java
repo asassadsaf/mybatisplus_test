@@ -1,11 +1,15 @@
 package com.fkp.test.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *
@@ -20,6 +24,7 @@ public class KmsServer implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("主键id")
+    @TableId(type = IdType.ASSIGN_ID)
     private String id;
 
     @ApiModelProperty("服务类型名称")
@@ -48,4 +53,13 @@ public class KmsServer implements Serializable {
 
     @ApiModelProperty("备注")
     private String remark;
+
+    public KmsServer(String id, String typeName, String startPath, String stopPath, String logConfigPath, String develLanguage) {
+        this.id = id;
+        this.typeName = typeName;
+        this.startPath = startPath;
+        this.stopPath = stopPath;
+        this.logConfigPath = logConfigPath;
+        this.develLanguage = develLanguage;
+    }
 }
