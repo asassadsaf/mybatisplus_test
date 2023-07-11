@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkp.test.mapper.LogConfigurationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fkp.test.entity.LogConfiguration">
+        <id column="id" property="id" />
+        <result column="logName" property="logName" />
+        <result column="logRotation" property="logRotation" />
+        <result column="logLevel" property="logLevel" />
+        <result column="filesNum" property="filesNum" />
+        <result column="maxLogSize" property="maxLogSize" />
+        <result column="maxHistory" property="maxHistory" />
+        <result column="createby" property="createby" />
+        <result column="createdate" property="createdate" />
+        <result column="updateby" property="updateby" />
+        <result column="updatedate" property="updatedate" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, logName, logRotation, logLevel, filesNum, maxLogSize, maxHistory, createby, createdate, updateby, updatedate, remark
+    </sql>
+
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkp.test.mapper.KeyServerWhitelistMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fkp.test.entity.KeyServerWhitelist">
+        <id column="id" property="id" />
+        <result column="serverId" property="serverId" />
+        <result column="serverType" property="serverType" />
+        <result column="port" property="port" />
+        <result column="configRule" property="configRule" />
+        <result column="whiteListIp" property="whiteListIp" />
+        <result column="maskBit" property="maskBit" />
+        <result column="createby" property="createby" />
+        <result column="createdate" property="createdate" />
+        <result column="updateby" property="updateby" />
+        <result column="updatedate" property="updatedate" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, serverId, serverType, `port`, configRule, whiteListIp, maskBit, createby, createdate, updateby, updatedate, remark
+    </sql>
+
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkp.test.mapper.KeyServerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fkp.test.entity.KeyServer">
+        <id column="id" property="id" />
+        <result column="server_type" property="serverType" />
+        <result column="port" property="port" />
+        <result column="status" property="status" />
+        <result column="auto_start" property="autoStart" />
+        <result column="use_ssl" property="useSsl" />
+        <result column="cert_alg" property="certAlg" />
+        <result column="ssl_cert_id" property="sslCertId" />
+        <result column="ssl_cert_desc" property="sslCertDesc" />
+        <result column="use_ca" property="useCa" />
+        <result column="ca_cert_ids" property="caCertIds" />
+        <result column="ca_cert_desc" property="caCertDesc" />
+        <result column="ca_match_item" property="caMatchItem" />
+        <result column="verify_username" property="verifyUsername" />
+        <result column="ip_address" property="ipAddress" />
+        <result column="connection_type" property="connectionType" />
+        <result column="auth_type" property="authType" />
+        <result column="create_date" property="createDate" />
+        <result column="update_date" property="updateDate" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, server_type, `port`, `status`, auto_start, use_ssl, cert_alg, ssl_cert_id, ssl_cert_desc, use_ca, ca_cert_ids, ca_cert_desc, ca_match_item, verify_username, ip_address, connection_type, auth_type, create_date, update_date, remark
+    </sql>
+
+</mapper>

@@ -17,6 +17,8 @@ import lombok.NoArgsConstructor;
  * @since 2023-05-09
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @TableName("kms_server")
 @ApiModel(value = "KmsServer对象", description = "")
 public class KmsServer implements Serializable {

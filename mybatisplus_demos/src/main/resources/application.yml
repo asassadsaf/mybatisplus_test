@@ -2,16 +2,16 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
-#      driver-class-name: com.mysql.cj.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
 #      driver-class-name: org.sqlite.JDBC
-      driver-class-name: org.h2.Driver
+#      driver-class-name: org.h2.Driver
 #      url: jdbc:h2:D:\IDEAWorkSpace\mybatisplus_test\mybatisplus_demos\h2\seckmsfb;AUTO_SERVER=TRUE
-      url: jdbc:h2:mem:seckmsfb
+#      url: jdbc:h2:mem:seckmsfb
       validation-query: SELECT 1
-  #      url: jdbc:mysql://localhost:3306/seckmsfb?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+      url: jdbc:mysql://localhost:3306/seckmsfb_kms?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
 #      url: jdbc:sqlite:sqlite/seckmsfb.db?date_string_format=yyyy-MM-dd HH:mm:ss
-#      username: root
-#      password: fkp123456
+      username: root
+      password: SWXA1234@DAR_Mysql
   sql:
     init:
       schema-locations: classpath*:sql/seckmsfb_h2_DDL.sql #项目启动执行sql文件，对应DDL
@@ -22,7 +22,7 @@ mybatis-plus:
     - classpath:mappers/*.xml
   type-handlers-package: com.fkp.type_handler
 mybatis:
-  databaseType: h2
+  databaseType: mysql
 logging:
   level:
-    root: info
+    root: debug
