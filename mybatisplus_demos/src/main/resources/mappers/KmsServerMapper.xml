@@ -22,17 +22,36 @@
     </sql>
 
 <!--    通过_databaseId参数区分数据库类型，做不同处理-->
+<!--    <select id="selectAllLikeKmsUser" resultMap="BaseResultMap">-->
+<!--        select-->
+<!--        <include refid="Base_Column_List"/>-->
+<!--        from kms_server-->
+<!--        <where>-->
+<!--            <if test="_databaseId == 'sqlite'">-->
+<!--                and kms_user like '%'|| #{kmsUser} || '%'-->
+<!--            </if>-->
+<!--            <if test="_databaseId == 'mysql'">-->
+<!--                and kms_user like concat('%',#{kmsUser},'%')-->
+<!--            </if>-->
+<!--        </where>-->
+<!--    </select>-->
+
+<!--    标签属性方式使用databaseId，databaseId匹配则使用匹配的，若没有匹配的则走没有指定databaseId的-->
+    <select id="selectAllLikeKmsUser" resultMap="BaseResultMap" databaseId="sqlite">
+        select
+        <include refid="Base_Column_List"/>
+        from kms_server
+        <where>
+            and kms_user like '%'|| #{kmsUser} || '%'
+        </where>
+    </select>
+
     <select id="selectAllLikeKmsUser" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from kms_server
         <where>
-            <if test="_databaseId == 'sqlite'">
-                and kms_user like '%'|| #{kmsUser} || '%'
-            </if>
-            <if test="_databaseId == 'mysql'">
-                and kms_user like concat('%',#{kmsUser},'%')
-            </if>
+           and kms_user like concat('%',#{kmsUser},'%')
         </where>
     </select>
 

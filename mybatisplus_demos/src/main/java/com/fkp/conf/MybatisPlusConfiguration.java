@@ -37,7 +37,7 @@ public class MybatisPlusConfiguration {
     /**
      * 多数据库适配支持，xml中通过_databaseId参数配合if标签或查询等标签中通过databaseId指定flagName适配多数据库
      */
-    @Bean
+//    @Bean   通过MyVendorDatabaseIdProvider实现
     public DatabaseIdProvider databaseIdProvider(){
         DatabaseIdProvider provider = new VendorDatabaseIdProvider();
         Properties properties = new Properties();
