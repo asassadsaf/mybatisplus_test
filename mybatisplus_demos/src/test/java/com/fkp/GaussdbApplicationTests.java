@@ -1,7 +1,9 @@
 package com.fkp;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.fkp.gaussdb.entity.EncDirEntity;
 import com.fkp.gaussdb.entity.GaussPersonByte;
+import com.fkp.gaussdb.mapper.EncDirDAO;
 import com.fkp.gaussdb.mapper.GaussPersonByteMapper;
 import com.fkp.postgresql.entity.PersonByte;
 import com.fkp.postgresql.mapper.PersonByteMapper;
@@ -18,6 +20,9 @@ class GaussdbApplicationTests {
 
     @Autowired
     private GaussPersonByteMapper gaussPersonByteMapper;
+
+    @Autowired
+    private EncDirDAO encDirDAO;
 
     @Test
     void test() {
@@ -79,6 +84,15 @@ class GaussdbApplicationTests {
         gaussPersonByte.setByteContentBlob(new byte[0]);
 //        gaussPersonByte.setByteContentBytea(new byte[0]);
         gaussPersonByteMapper.updateById(gaussPersonByte);
+    }
+
+    @Test
+    void testSelectByMsg(){
+        EncDirEntity entity = new EncDirEntity();
+        entity.setDirName("/home/fkp/aaa");
+        entity.setServer_ip("10.0.103.160");
+        EncDirEntity res = encDirDAO.selectByMsg(entity);
+        System.out.println(res);
     }
 
 }

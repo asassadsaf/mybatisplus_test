@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fkp.gaussdb.mapper.EncDirDAO">
+    <resultMap id="BaseResultMap" type="com.fkp.gaussdb.entity.EncDirEntity">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="DIR_NAME" property="dirName" jdbcType="VARCHAR"/>
+        <result column="KEY_ID" property="key_id" jdbcType="VARCHAR"/>
+        <result column="KEY_UNIQUEID" property="key_uniqueId" jdbcType="VARCHAR"/>
+        <result column="KEY_USER" property="key_user" jdbcType="VARCHAR"/>
+        <result column="KEY_PASSWORD" property="key_password" jdbcType="VARCHAR"/>
+        <result column="SERVER_IP" property="server_ip" jdbcType="VARCHAR"/>
+        <result column="STATUS" property="status" jdbcType="VARCHAR"/>
+        <result column="VISITUSER" property="visitUser" jdbcType="VARCHAR"/>
+        <result column="ACCESSUSER" property="accessUser" jdbcType="VARCHAR"/>
+        <result column="KEY_ALG" property="key_alg" jdbcType="VARCHAR"/>
+        <result column="TYPE" property="type" jdbcType="VARCHAR"/>
+        <result column="AUTO_ENCRYPTION" property="auto_encryption" jdbcType="VARCHAR"/>
+        <result column="FILE_EXTENSION" property="file_extension" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID, DIR_NAME, KEY_ID, KEY_USER, KEY_PASSWORD,
+        SERVER_IP,STATUS,VISITUSER,ACCESSUSER,KEY_ALG,TYPE,AUTO_ENCRYPTION,FILE_EXTENSION
+    </sql>
+
+    <select id="findPage" resultMap="BaseResultMap">
+        SELECT *
+        FROM storage_encrypted_dir
+        <where>
+            <if test="req.serverIp!=null and req.serverIp!=''">
+                AND SERVER_IP=#{req.serverIp, jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+<!--    <insert id="insertSelective" parameterType="com.fkp.gaussdb.entity.EncDirEntity">-->
+<!--        insert into storage_encrypted_dir-->
+<!--        <trim prefix="(" suffix=")" suffixOverrides=",">-->
+<!--            <if test="id != null">-->
+<!--                ID,-->
+<!--            </if>-->
+<!--            <if test="dirName != null">-->
+<!--                DIR_NAME,-->
+<!--            </if>-->
+<!--            <if test="key_id != null">-->
+<!--                KEY_ID,-->
+<!--            </if>-->
+<!--            <if test="key_uniqueId != null">-->
+<!--                KEY_UNIQUEID,-->
+<!--            </if>-->
+<!--            <if test="key_user != null">-->
+<!--                KEY_USER,-->
+<!--            </if>-->
+<!--            <if test="key_password != null">-->
+<!--                KEY_PASSWORD,-->
+<!--            </if>-->
+<!--            <if test="server_ip != null">-->
+<!--                SERVER_IP,-->
+<!--            </if>-->
+<!--            <if test="status != null">-->
+<!--                STATUS,-->
+<!--            </if>-->
+<!--            <if test="visitUser != null">-->
+<!--                VISITUSER,-->
+<!--            </if>-->
+<!--            <if test="accessUser != null">-->
+<!--                ACCESSUSER,-->
+<!--            </if>-->
+<!--            <if test="key_alg != null">-->
+<!--                KEY_ALG,-->
+<!--            </if>-->
+<!--            <if test="type != null">-->
+<!--                TYPE,-->
+<!--            </if>-->
+<!--            <if test="auto_encryption != null">-->
+<!--                AUTO_ENCRYPTION,-->
+<!--            </if>-->
+<!--            <if test="file_extension != null">-->
+<!--                FILE_EXTENSION,-->
+<!--            </if>-->
+<!--        </trim>-->
+<!--        <trim prefix="values (" suffix=")" suffixOverrides=",">-->
+<!--            <if test="id != null">-->
+<!--                #{id,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="dirName != null">-->
+<!--                #{dirName,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="key_id != null">-->
+<!--                #{key_id,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="key_uniqueId != null">-->
+<!--                #{key_uniqueId,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="key_user != null">-->
+<!--                #{key_user,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="key_password != null">-->
+<!--                #{key_password,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="server_ip != null">-->
+<!--                #{server_ip,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="status != null">-->
+<!--                #{status,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="visitUser != null">-->
+<!--                #{visitUser,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="accessUser != null">-->
+<!--                #{accessUser,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="key_alg != null">-->
+<!--                #{key_alg,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="type != null">-->
+<!--                #{type,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="auto_encryption != null">-->
+<!--                #{auto_encryption,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="file_extension != null">-->
+<!--                #{file_extension,jdbcType=VARCHAR},-->
+<!--            </if>-->
+
+<!--        </trim>-->
+<!--    </insert>-->
+
+
+    <select id="selectByMsg" resultMap="BaseResultMap"
+            parameterType="com.fkp.gaussdb.entity.EncDirEntity">
+        select
+        *
+        from storage_encrypted_dir
+        where BINARY DIR_NAME = #{dirName,jdbcType=VARCHAR}
+        AND
+        SERVER_IP = #{server_ip,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectKeyByDirAndServer" resultType="java.lang.String">
+        select key_id from storage_encrypted_dir where BINARY dir_name = #{param1} and server_ip = #{param2}
+    </select>
+    <select id="selectbyserver" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select * from storage_encrypted_dir where SERVER_IP = #{server_ip,jdbcType=VARCHAR}
+    </select>
+    <select id="selectcount" resultType="java.lang.Integer"
+            parameterType="com.fkp.gaussdb.entity.EncDirEntity">
+        select
+        count(1)
+        from storage_encrypted_dir
+        where BINARY DIR_NAME = #{dirName,jdbcType=VARCHAR}
+        AND
+        SERVER_IP = #{server_ip,jdbcType=VARCHAR}
+    </select>
+
+
+    <update id="updateDir" parameterType="com.fkp.gaussdb.entity.EncDirEntity">
+        update storage_encrypted_dir
+        <set>
+            <if test="key_uniqueId != null">
+                KEY_UNIQUEID = #{key_uniqueId,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                STATUS = #{status,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where DIR_NAME = #{dirName,jdbcType=VARCHAR}
+        AND
+        SERVER_IP = #{server_ip,jdbcType=VARCHAR}
+    </update>
+
+    <delete id="deleteSelective" parameterType="com.fkp.gaussdb.entity.EncDirEntity">
+        delete from storage_encrypted_dir
+        where DIR_NAME = #{dirName,jdbcType=VARCHAR}
+        AND
+        SERVER_IP = #{server_ip,jdbcType=VARCHAR}
+    </delete>
+
+    <select id="selectCountByKeyName" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM storage_encrypted_dir WHERE key_id = #{keyName}
+    </select>
+
+    <select id="selectEncCountByServer" resultType="java.lang.Integer" parameterType="java.lang.String">
+        SELECT COUNT(1) FROM storage_encrypted_dir WHERE SERVER_IP = #{server_ip,jdbcType=VARCHAR} and status =
+        'Encrypted'
+    </select>
+
+    <select id="selectOperatingCountByServer" resultType="java.lang.Integer" parameterType="java.lang.String">
+        SELECT COUNT(1) FROM storage_encrypted_dir WHERE SERVER_IP = #{server_ip,jdbcType=VARCHAR} and (status =
+        'Encrypting' or status = 'Decrypting')
+    </select>
+
+    <update id="updateServerIp" parameterType="java.lang.String">
+        update storage_encrypted_dir set SERVER_IP = #{param1} where SERVER_IP = #{param2}
+    </update>
+
+    <delete id="deleteByServerIp" parameterType="java.lang.String">
+        delete from storage_encrypted_dir where SERVER_IP = #{server_ip}
+    </delete>
+
+    <select id="countByStatusAndIp" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM storage_encrypted_dir
+        <where>
+            <if test="status!=null and status!=''">
+                AND STATUS=#{status, jdbcType=VARCHAR}
+            </if>
+            AND SERVER_IP=#{serverIp, jdbcType=VARCHAR}
+        </where>
+    </select>
+
+    <select id="getStateByIpAndPath" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT
+            STATUS
+        FROM
+            storage_encrypted_dir
+        <where>
+            SERVER_IP = #{ip}
+            <if test="path != null and path != ''">
+                AND DIR_NAME = #{path}
+            </if>
+        </where>
+    </select>
+
+    <select id="existDirByIp" resultType="java.lang.Integer">
+        SELECT 1
+        FROM storage_encrypted_dir
+        WHERE SERVER_IP=#{ip}
+        LIMIT 1
+    </select>
+</mapper>
