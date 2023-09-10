@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.fkp.test.entity.KekInfo;
 import com.fkp.test.entity.KmsServer;
+import com.fkp.test.mapper.KekInfoMapper;
 import com.fkp.test.mapper.KmsServerMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ class MybatisplusDemosApplicationTests {
 
     @Autowired
     private KmsServerMapper kmsServerMapper;
+
+    @Autowired
+    private KekInfoMapper kekInfoMapper;
 
     @Test
     void test() {
@@ -105,8 +110,16 @@ class MybatisplusDemosApplicationTests {
             int insert = kmsServerMapper.updateById(rest);
 //        }
 
+    }
 
-
+    @Test
+    void test10(){
+        //select Alg,ChangeNo from xxx where DevID = "123";
+        KekInfo kekInfo = kekInfoMapper.selectOne(Wrappers.lambdaQuery(KekInfo.class).select(KekInfo::getAlg, KekInfo::getChangeNo).eq(KekInfo::getDevId, "123"));
+        System.out.println(kekInfo);
+        //select count(*) from xxx;
+        Long aLong = kekInfoMapper.selectCount(Wrappers.emptyWrapper());
+        System.out.println(aLong);
     }
 
 }
