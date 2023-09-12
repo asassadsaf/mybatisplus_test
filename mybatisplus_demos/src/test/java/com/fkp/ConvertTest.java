@@ -42,7 +42,7 @@ public class ConvertTest {
 
     @Test
     void testCheckPrimaryKey() throws IOException {
-        RandomAccessFile ras = new RandomAccessFile("C:\\Users\\fengkunpeng\\Desktop\\svs-gauss.sql", "r");
+        RandomAccessFile ras = new RandomAccessFile("C:\\Users\\fengkunpeng\\Desktop\\kms-dm.sql", "r");
         Map<String, String> tableInfos = getTableNames(ras);
         Map<String, String> tablePrimaryKey = getTablePrimaryKey(ras);
         for (Map.Entry<String, String> entry : tableInfos.entrySet()) {
@@ -56,12 +56,26 @@ public class ConvertTest {
         System.out.println(tablePrimaryKey);
     }
 
+    @Test
+    void testCompareTableName() throws IOException {
+        RandomAccessFile ras = new RandomAccessFile("C:\\Users\\fengkunpeng\\Desktop\\kms-kingbase.sql", "r");
+        RandomAccessFile ras1 = new RandomAccessFile("C:\\Users\\fengkunpeng\\Desktop\\kms-mysql.sql", "r");
+        Map<String, String> dm = getTableNames(ras);
+        Map<String, String> mysql = getTableNames(ras1);
+        for (Map.Entry<String, String> entry : mysql.entrySet()) {
+            if (!dm.containsKey(entry.getKey().toUpperCase(Locale.ROOT))) {
+                System.out.println(entry.getKey());
+            }
+        }
+
+    }
+
     Map<String, String> getTableNames(RandomAccessFile ras) throws IOException {
        Map<String, String> tableInfos = new HashMap<>();
         String line;
         while ((line = ras.readLine()) != null){
             if(line.contains("CREATE TABLE ")){
-                String tableName = line.replaceAll("CREATE TABLE", "").replaceAll(" ", "").replaceAll("\\(", "");
+                String tableName = line.replaceAll("CREATE TABLE", "").replaceAll(" ", "").replaceAll("\\(", "").replaceAll("`", "").replaceAll("\"", "");
                 String oneLine = ras.readLine();
                 String columnName = getColumnName(oneLine);
                 tableInfos.put(tableName, columnName);
