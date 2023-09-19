@@ -58,12 +58,12 @@ public class ConvertTest {
 
     @Test
     void testCompareTableName() throws IOException {
-        RandomAccessFile ras = new RandomAccessFile("C:\\Users\\fengkunpeng\\Desktop\\kms-kingbase.sql", "r");
-        RandomAccessFile ras1 = new RandomAccessFile("C:\\Users\\fengkunpeng\\Desktop\\kms-mysql.sql", "r");
+        RandomAccessFile ras = new RandomAccessFile("C:\\Users\\fengkunpeng\\Desktop\\kms-mysql.sql", "r");
+        RandomAccessFile ras1 = new RandomAccessFile("C:\\Users\\fengkunpeng\\Desktop\\kms-dm.sql", "r");
         Map<String, String> dm = getTableNames(ras);
         Map<String, String> mysql = getTableNames(ras1);
         for (Map.Entry<String, String> entry : mysql.entrySet()) {
-            if (!dm.containsKey(entry.getKey().toUpperCase(Locale.ROOT))) {
+            if (!dm.containsKey(entry.getKey().toLowerCase(Locale.ROOT))) {
                 System.out.println(entry.getKey());
             }
         }
@@ -108,5 +108,10 @@ public class ConvertTest {
             }
         }
         return null;
+    }
+
+    @Test
+    void test11(){
+        System.out.println("SM9_WHITELIST".toLowerCase());
     }
 }

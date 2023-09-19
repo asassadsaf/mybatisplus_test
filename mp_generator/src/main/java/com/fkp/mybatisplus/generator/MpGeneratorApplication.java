@@ -28,15 +28,15 @@ public class MpGeneratorApplication {
         ParamsProperties.DataSourceProperties dataSourceProperties = paramsProperties.dataSourceProperties;
         ParamsProperties.ConfigProperties configProperties = paramsProperties.configProperties;
 
-//        MySqlTypeConvert mySqlTypeConvert = new MySqlTypeConvert();
-//        MySqlKeyWordsHandler mySqlKeyWordsHandler = new MySqlKeyWordsHandler();
-        PostgreSqlKeyWordsHandler postgreSqlKeyWordsHandler = new PostgreSqlKeyWordsHandler();
-        PostgreSqlTypeConvert postgreSqlTypeConvert = new PostgreSqlTypeConvert();
+        MySqlTypeConvert mySqlTypeConvert = new MySqlTypeConvert();
+        MySqlKeyWordsHandler mySqlKeyWordsHandler = new MySqlKeyWordsHandler();
+//        PostgreSqlKeyWordsHandler postgreSqlKeyWordsHandler = new PostgreSqlKeyWordsHandler();
+//        PostgreSqlTypeConvert postgreSqlTypeConvert = new PostgreSqlTypeConvert();
 
         DataSourceConfig dataSourceConfig = new DataSourceConfig
                 .Builder(dataSourceProperties.getUrl(), dataSourceProperties.getUsername(), dataSourceProperties.getPassword())
-                .typeConvert(postgreSqlTypeConvert)
-                .keyWordsHandler(postgreSqlKeyWordsHandler)
+                .typeConvert(mySqlTypeConvert)
+                .keyWordsHandler(mySqlKeyWordsHandler)
                 .build();
 
         GlobalConfig globalConfig = new GlobalConfig.Builder()
@@ -54,7 +54,7 @@ public class MpGeneratorApplication {
 
 
         StrategyConfig strategyConfig = new StrategyConfig.Builder()
-                .addInclude(configProperties.getTableNames())
+//                .addInclude(configProperties.getTableNames())
                 .entityBuilder()
                 .enableLombok()
                 .mapperBuilder()

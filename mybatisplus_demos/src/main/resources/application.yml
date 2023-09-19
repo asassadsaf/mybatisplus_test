@@ -6,28 +6,28 @@ spring:
 #      driver-class-name: com.mysql.cj.jdbc.Driver
 #      driver-class-name: org.sqlite.JDBC
 #      driver-class-name: org.h2.Driver
-      driver-class-name: dm.jdbc.driver.DmDriver
-#      driver-class-name: com.kingbase8.Driver
+#      driver-class-name: dm.jdbc.driver.DmDriver
+      driver-class-name: com.kingbase8.Driver
 #      url: jdbc:h2:D:\IDEAWorkSpace\mybatisplus_test\mybatisplus_demos\h2\seckmsfb;AUTO_SERVER=TRUE
 #      url: jdbc:h2:mem:seckmsfb
 #      url: jdbc:postgresql://10.0.101.11:5432/fkp_test6?currentSchema=ccsp_storage
       validation-query: SELECT 1
 #      url: jdbc:mysql://10.0.103.33:3306/seckmsfb?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
 #      url: jdbc:sqlite:sqlite/seckmsfb.db?date_string_format=yyyy-MM-dd HH:mm:ss
-#      url: jdbc:kingbase8://10.0.103.14:54321/CCSP?currentSchema=ccsp_kms
-      url: jdbc:dm://10.0.103.12:5236/ccsp_kms?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
+      url: jdbc:kingbase8://10.0.103.14:54321/CCSP?currentSchema=CCSP_KMS
+#      url: jdbc:dm://10.0.103.12:5236?schema=ccsp_kms&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
 #      username: root
 #      password: SWXA1234@DAR_Mysql
-#      username: ccsp1
-#      password: swxa@1234
-      username: SYSDBA
-      password: swxa1234.
-      filters: stat
-      filter:
-        wall:
-          enabled: true
-          config:
-            strict-syntax-check: false   #关闭sql语法检查
+      username: SYSTEM
+      password: swxa1234
+#      username: SYSDBA
+#      password: swxa1234.
+#      filters: stat
+#      filter:
+#        wall:
+#          enabled: true
+#          config:
+#            strict-syntax-check: false   #关闭sql语法检查
 
 
 
@@ -40,8 +40,11 @@ mybatis-plus:
   mapper-locations:
     - classpath:mappers/*.xml
   type-handlers-package: com.fkp.type_handler
+#  global-config:
+#    db-config:
+#      schema: ccsp_kms
 mybatis:
   databaseType: mysql
 logging:
   level:
-    root: info
+    root: debug

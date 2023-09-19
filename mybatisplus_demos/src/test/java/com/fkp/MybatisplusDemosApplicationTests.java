@@ -2,12 +2,15 @@ package com.fkp;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
+import com.baomidou.mybatisplus.core.toolkit.LambdaUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fkp.test.entity.KekInfo;
+import com.fkp.test.entity.KeyObject;
 import com.fkp.test.entity.KmsServer;
 import com.fkp.test.mapper.KekInfoMapper;
+import com.fkp.test.mapper.KeyObjectMapper;
 import com.fkp.test.mapper.KmsServerMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +29,15 @@ class MybatisplusDemosApplicationTests {
     @Autowired
     private KekInfoMapper kekInfoMapper;
 
+    @Autowired
+    private KeyObjectMapper keyObjectMapper;
+
     @Test
     void test() {
-        List<KmsServer> kmsServers = kmsServerMapper.selectList(Wrappers.lambdaQuery(KmsServer.class).eq(KmsServer::getId, "1"));
-        System.out.println(kmsServers);
+//        List<KmsServer> kmsServers = kmsServerMapper.selectList(Wrappers.lambdaQuery(KmsServer.class).eq(KmsServer::getId, "1"));
+//        System.out.println(kmsServers);
+        Long aLong = keyObjectMapper.selectCount(Wrappers.lambdaQuery(KeyObject.class).eq(KeyObject::getTenantAccount, "abc"));
+        System.out.println(aLong);
     }
 
     @Test
@@ -118,8 +126,12 @@ class MybatisplusDemosApplicationTests {
         KekInfo kekInfo = kekInfoMapper.selectOne(Wrappers.lambdaQuery(KekInfo.class).select(KekInfo::getAlg, KekInfo::getChangeNo).eq(KekInfo::getDevId, "123"));
         System.out.println(kekInfo);
         //select count(*) from xxx;
-        Long aLong = kekInfoMapper.selectCount(Wrappers.emptyWrapper());
-        System.out.println(aLong);
+//        Long aLong = kekInfoMapper.selectCount(Wrappers.emptyWrapper());
+//        System.out.println(aLong);
+        Integer alg = 1;
+        kekInfoMapper.update(null, Wrappers.lambdaUpdate(KekInfo.class).setSql(alg != null, String.format("%s = %s + 1", "alg", "alg")).eq(alg != null, KekInfo::getDevId, "123").setSql("keyVersion = 2"));
+        KekInfo kekInfo1 = kekInfoMapper.selectOne(Wrappers.lambdaQuery(KekInfo.class).select(KekInfo::getAlg, KekInfo::getChangeNo).eq(KekInfo::getDevId, "123"));
+        System.out.println(kekInfo1);
     }
 
 }
