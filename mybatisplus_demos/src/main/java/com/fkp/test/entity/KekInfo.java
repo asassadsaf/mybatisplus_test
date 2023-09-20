@@ -30,7 +30,7 @@ public class KekInfo implements Serializable {
     private String zoneNo;
 
     @ApiModelProperty("设备id")
-    @TableField("DevID")
+//    @TableField("DevID")
     private String devId;
 
     @ApiModelProperty("用户帐号")

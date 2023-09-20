@@ -40,6 +40,8 @@ mybatis-plus:
   mapper-locations:
     - classpath:mappers/*.xml
   type-handlers-package: com.fkp.type_handler
+#  configuration:
+#    map-underscore-to-camel-case: false
 #  global-config:
 #    db-config:
 #      schema: ccsp_kms
@@ -47,4 +49,4 @@ mybatis:
   databaseType: mysql
 logging:
   level:
-    root: debug
+    root: off
