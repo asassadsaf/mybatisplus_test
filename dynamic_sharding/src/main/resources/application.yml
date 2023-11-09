@@ -1,0 +1,37 @@
+
+# 读写分离配置
+spring:
+  shardingsphere:
+    datasource:
+      names: writeDataSource,readDataSource
+      writeDataSource:
+        driver-class-name: com.huawei.opengauss.jdbc.Driver
+        jdbc-url: jdbc:opengauss://10.0.104.78:7654,10.0.104.79:7654,10.0.104.98:7654/fkp_test?currentSchema=fkp_test&targetServerType=master
+        password: SWXA1234%DAR_Mysql
+        type: com.alibaba.druid.pool.DruidDataSource
+        username: fkp
+      readDataSource:
+        driver-class-name: com.huawei.opengauss.jdbc.Driver
+        jdbc-url: jdbc:opengauss://10.0.104.78:7654,10.0.104.79:7654,10.0.104.98:7654/fkp_test?currentSchema=fkp_test&autoBalance=roundrobin&targetServerType=slave
+        password: SWXA1234%DAR_Mysql
+        type: com.alibaba.druid.pool.DruidDataSource
+        username: fkp
+    props:
+      sql-show: true
+    rules:
+      readwrite-splitting:
+        data-sources:
+          myds:
+            static-strategy:
+              read-data-source-names:
+                - readDataSource
+              write-data-source-name: writeDataSource
+#  datasource:
+#    driver-class-name: com.huawei.opengauss.jdbc.Driver
+#    url: jdbc:opengauss://10.0.104.78:7654,10.0.104.79:7654,10.0.104.98:7654/fkp_test?currentSchema=fkp_test&targetServerType=master
+#    password: SWXA1234%DAR_Mysql
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    username: fkp
+
+
+
