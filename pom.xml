@@ -19,6 +19,7 @@
         <module>mybatisplus_other</module>
         <module>mp_generator</module>
         <module>mybatisplus_demos</module>
+        <module>dynamic</module>
     </modules>
 
     <properties>
