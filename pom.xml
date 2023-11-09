@@ -20,6 +20,7 @@
         <module>mp_generator</module>
         <module>mybatisplus_demos</module>
         <module>dynamic_sharding</module>
+        <module>dynamic_mybatisplus</module>
     </modules>
 
     <properties>

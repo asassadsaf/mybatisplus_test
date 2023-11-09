@@ -1,0 +1,20 @@
+
+# 读写分离配置
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      testWhileIdle: true
+    write-data-source:
+      driver-class-name: com.huawei.opengauss.jdbc.Driver
+      url: jdbc:opengauss://10.0.104.78:7654,10.0.104.79:7654,10.0.104.98:7654/fkp_test?currentSchema=fkp_test&targetServerType=master
+      password: SWXA1234%DAR_Mysql
+      username: fkp
+    read-data-source:
+      driver-class-name: com.huawei.opengauss.jdbc.Driver
+      url: jdbc:opengauss://10.0.104.78:7654,10.0.104.79:7654,10.0.104.98:7654/fkp_test?currentSchema=fkp_test&autoBalance=roundrobin&targetServerType=slave
+      password: SWXA1234%DAR_Mysql
+      username: fkp
+
+
+

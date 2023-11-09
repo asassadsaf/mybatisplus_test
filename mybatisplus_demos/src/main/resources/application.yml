@@ -21,7 +21,7 @@ spring:
 #      password: SWXA1234@DAR_Mysql
       username: root
       password: swxa@2023
-#      username: SYSDBA
+  #      username: SYSDBA
 #      password: swxa1234.
 #      filters: stat
 #      filter:
