@@ -4,17 +4,26 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
-      testWhileIdle: true
+      validation-query: SELECT 1               #数据库状态检测
+      test-while-idle: true                    #判断连接是否可用
+      test-on-borrow: false                    #在获得连接前是否要进行测试
+      test-on-return: false                    #在归还连接前是否要进行测试
+      initial-size: 5  #初始化连接池大小
+      min-idle: 3     #最小连接数
+      max-active: 20   #最大连接数
     write-data-source:
-      driver-class-name: com.huawei.opengauss.jdbc.Driver
+      driver-class-name: org.opengauss.Driver
       url: jdbc:opengauss://10.0.104.78:7654,10.0.104.79:7654,10.0.104.98:7654/fkp_test?currentSchema=fkp_test&targetServerType=master
       password: SWXA1234%DAR_Mysql
       username: fkp
     read-data-source:
-      driver-class-name: com.huawei.opengauss.jdbc.Driver
-      url: jdbc:opengauss://10.0.104.78:7654,10.0.104.79:7654,10.0.104.98:7654/fkp_test?currentSchema=fkp_test&autoBalance=roundrobin&targetServerType=slave
+      driver-class-name: org.opengauss.Driver
+#      url: jdbc:opengauss://10.0.104.78:7654,10.0.104.79:7654,10.0.104.98:7654/fkp_test?currentSchema=fkp_test&autoBalance=roundrobin&targetServerType=slave
+      url: jdbc:opengauss://10.0.104.78:7654,10.0.104.79:7654,10.0.104.98:7654/fkp_test?currentSchema=fkp_test&autoBalance=leastconn&targetServerType=slave&enableQuickAutoBalance=true&maxIdleTimeBeforeTerminal=20&minReservedConPerCluster=20&minReservedConPerDatanode=20
       password: SWXA1234%DAR_Mysql
       username: fkp
-
+logging:
+  level:
+    root: info
 
 

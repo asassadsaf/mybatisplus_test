@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
+import java.util.Optional;
 
 @AutoConfigureBefore(DruidDataSourceAutoConfigure.class)
 @Configuration
@@ -22,13 +23,13 @@ import javax.sql.DataSource;
 @Data
 public class DataSourceConfig {
 
-//    private int initialSize;
-//    private int maxActive;
-//    private int minIdle;
-//    private long maxWait;
-//    private long minEvictableIdleTimeMillis;
-//    private long timeBetweenEvictionRunsMillis;
-//    private boolean testWhileIdle;
+    private Integer initialSize;
+    private Integer maxActive;
+    private Integer minIdle;
+    private Long maxWait;
+    private Long minEvictableIdleTimeMillis;
+    private Long timeBetweenEvictionRunsMillis;
+    private Boolean testWhileIdle;
 
     @Bean(name = "writeDataSource")
     @ConfigurationProperties(prefix = "spring.datasource.write-data-source")
@@ -47,13 +48,13 @@ public class DataSourceConfig {
     }
 
     private void parseDruidConfig(DruidDataSource dataSource) {
-//        dataSource.setInitialSize(initialSize);
-//        dataSource.setMaxActive(maxActive);
-//        dataSource.setMinIdle(minIdle);
-//        dataSource.setMaxWait(maxWait);
-//        dataSource.setMinEvictableIdleTimeMillis(minEvictableIdleTimeMillis);
-//        dataSource.setTimeBetweenEvictionRunsMillis(timeBetweenEvictionRunsMillis);
-//        dataSource.setTestWhileIdle(testWhileIdle);
+        Optional.ofNullable(initialSize).ifPresent(dataSource::setInitialSize);
+        Optional.ofNullable(maxActive).ifPresent(dataSource::setMaxActive);
+        Optional.ofNullable(minIdle).ifPresent(dataSource::setMinIdle);
+        Optional.ofNullable(maxWait).ifPresent(dataSource::setMaxWait);
+        Optional.ofNullable(minEvictableIdleTimeMillis).ifPresent(dataSource::setMinEvictableIdleTimeMillis);
+        Optional.ofNullable(timeBetweenEvictionRunsMillis).ifPresent(dataSource::setTimeBetweenEvictionRunsMillis);
+        Optional.ofNullable(testWhileIdle).ifPresent(dataSource::setTestWhileIdle);
     }
 
     /**

@@ -3,7 +3,9 @@ package com.sansec.dynamic_mp.config;
 import com.sansec.dynamic_mp.constant.DynamicDataSourceGlobalEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +16,7 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
 
     private Object writeDataSource;
     private Object readDataSource;
+    private DataSourceTransactionManager dataSourceTransactionManager;
 
     @Override
     public void afterPropertiesSet() {
@@ -33,6 +36,6 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
     @Override
     protected Object determineCurrentLookupKey() {
         // 开启事务，用主数据源
-		return DynamicDataSourceHolder.getDataSource() == DynamicDataSourceGlobalEnum.WRITE ? DynamicDataSourceGlobalEnum.WRITE.name() : DynamicDataSourceGlobalEnum.READ.name();
+        return DynamicDataSourceHolder.getDataSource() == DynamicDataSourceGlobalEnum.WRITE ? DynamicDataSourceGlobalEnum.WRITE.name() : DynamicDataSourceGlobalEnum.READ.name();
     }
 }
