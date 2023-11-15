@@ -10,8 +10,8 @@
 	<groupId>com.sansec</groupId>
 	<artifactId>dynamic_sharding</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>dynamic</name>
-	<description>dynamic</description>
+	<name>dynamic_sharding</name>
+	<description>dynamic_sharding</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -21,11 +21,13 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.apache.shardingsphere/shardingsphere-jdbc-core-spring-boot-starter -->
 		<dependency>
 			<groupId>org.apache.shardingsphere</groupId>
 			<artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>
-			<version>5.2.1</version>
+			<version>5.1.2</version>
 		</dependency>
+
 
 <!--		<dependency>-->
 <!--			<groupId>org.apache.shardingsphere</groupId>-->

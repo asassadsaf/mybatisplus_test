@@ -10,7 +10,7 @@
 	<groupId>com.sansec</groupId>
 	<artifactId>dynamic_mybatisplus</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>dynamic</name>
+	<name>dynamic_mybatisplus</name>
 	<description>dynamic_mybatisplus</description>
 	<properties>
 		<java.version>1.8</java.version>

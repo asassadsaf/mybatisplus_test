@@ -5,27 +5,37 @@ spring:
     datasource:
       names: writeDataSource,readDataSource
       writeDataSource:
-        driver-class-name: com.huawei.opengauss.jdbc.Driver
-        jdbc-url: jdbc:opengauss://10.0.104.78:7654,10.0.104.79:7654,10.0.104.98:7654/fkp_test?currentSchema=fkp_test&targetServerType=master
+        driver-class-name: org.opengauss.Driver
+        url: jdbc:opengauss://10.20.44.65:7654,10.20.44.67:7654/seckmsfb?currentSchema=seckmsfb&targetServerType=master
         password: SWXA1234%DAR_Mysql
-        type: com.alibaba.druid.pool.DruidDataSource
         username: fkp
+        type: com.alibaba.druid.pool.DruidDataSource
       readDataSource:
-        driver-class-name: com.huawei.opengauss.jdbc.Driver
-        jdbc-url: jdbc:opengauss://10.0.104.78:7654,10.0.104.79:7654,10.0.104.98:7654/fkp_test?currentSchema=fkp_test&autoBalance=roundrobin&targetServerType=slave
+        driver-class-name: org.opengauss.Driver
+        url: jdbc:opengauss://10.20.44.65:7654,10.20.44.67:7654/seckmsfb?currentSchema=seckmsfb&autoBalance=leastconn&targetServerType=slave&enableQuickAutoBalance=true&maxIdleTimeBeforeTerminal=20&minReservedConPerCluster=20&minReservedConPerDatanode=20
         password: SWXA1234%DAR_Mysql
-        type: com.alibaba.druid.pool.DruidDataSource
         username: fkp
+        type: com.alibaba.druid.pool.DruidDataSource
     props:
       sql-show: true
     rules:
       readwrite-splitting:
-        data-sources:
-          myds:
-            static-strategy:
-              read-data-source-names:
-                - readDataSource
-              write-data-source-name: writeDataSource
+        dataSources:
+          myds: # 读写分离逻辑数据源名称
+            type: Static # 读写分离类型，比如：Static，Dynamic
+            props:
+              auto-aware-data-source-name: writeDataSource # 自动发现数据源名称（与数据库发现配合使用）
+              write-data-source-name: writeDataSource # 写库数据源名称
+              read-data-source-names: readDataSource # 读库数据源名称，多个从数据源用逗号分隔
+            loadBalancerName: ROUND_ROBIN # 负载均衡算法名称
+
+#        # 负载均衡算法配置
+#        loadBalancers:
+#          <load-balancer-name> (+): # 负载均衡算法名称
+#            type: # 负载均衡算法类型
+#            props: # 负载均衡算法属性配置
+#            # ...
+
 #  datasource:
 #    driver-class-name: com.huawei.opengauss.jdbc.Driver
 #    url: jdbc:opengauss://10.0.104.78:7654,10.0.104.79:7654,10.0.104.98:7654/fkp_test?currentSchema=fkp_test&targetServerType=master
