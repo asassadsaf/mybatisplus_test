@@ -3,6 +3,7 @@ package com.sansec.dynamic_mp.config;
 import com.sansec.dynamic_mp.constant.DynamicDataSourceGlobalEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.core.annotation.Order;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 import org.springframework.transaction.support.TransactionSynchronizationManager;

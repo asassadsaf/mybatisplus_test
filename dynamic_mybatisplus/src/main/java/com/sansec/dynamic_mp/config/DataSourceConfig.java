@@ -12,7 +12,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.sql.DataSource;
 import java.util.Optional;
@@ -33,7 +37,7 @@ public class DataSourceConfig {
 
     @Bean(name = "writeDataSource")
     @ConfigurationProperties(prefix = "spring.datasource.write-data-source")
-    public DataSource masterDataSource() {
+    public DataSource writeDataSource() {
         DruidDataSource dataSource = DruidDataSourceBuilder.create().build();
         parseDruidConfig(dataSource);
         return dataSource;
@@ -41,7 +45,7 @@ public class DataSourceConfig {
 
     @Bean(name = "readDataSource")
     @ConfigurationProperties(prefix = "spring.datasource.read-data-source")
-    public DataSource slaveDataSource() {
+    public DataSource readDataSource() {
         DruidDataSource dataSource = DruidDataSourceBuilder.create().build();
         parseDruidConfig(dataSource);
         return dataSource;
@@ -68,9 +72,9 @@ public class DataSourceConfig {
     @Primary
     public DynamicDataSource dataSource() {
         DynamicDataSource dynamicDataSource = new DynamicDataSource();
-        dynamicDataSource.setDefaultTargetDataSource(masterDataSource());
-        dynamicDataSource.setWriteDataSource(masterDataSource());
-        dynamicDataSource.setReadDataSource(slaveDataSource());
+        dynamicDataSource.setDefaultTargetDataSource(writeDataSource());
+        dynamicDataSource.setWriteDataSource(writeDataSource());
+        dynamicDataSource.setReadDataSource(readDataSource());
         return dynamicDataSource;
     }
 
@@ -90,5 +94,10 @@ public class DataSourceConfig {
     @Bean
     public DataSourceTransactionManager transactionManager(DynamicDataSource dataSource) throws Exception {
         return new DataSourceTransactionManager(dataSource);
+    }
+
+    @Bean
+    public TransactionTemplate transactionTemplate(PlatformTransactionManager platformTransactionManager){
+        return new TransactionTemplate(platformTransactionManager);
     }
 }

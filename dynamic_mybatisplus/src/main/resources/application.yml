@@ -13,13 +13,13 @@ spring:
       max-active: 20   #最大连接数
     write-data-source:
       driver-class-name: org.opengauss.Driver
-      url: jdbc:opengauss://10.0.104.78:7654,10.0.104.79:7654,10.0.104.98:7654/fkp_test?currentSchema=fkp_test&targetServerType=master
+      url: jdbc:opengauss://10.20.44.65:7654,10.20.44.67:7654/seckmsfb?currentSchema=seckmsfb&targetServerType=master
       password: SWXA1234%DAR_Mysql
       username: fkp
     read-data-source:
       driver-class-name: org.opengauss.Driver
 #      url: jdbc:opengauss://10.0.104.78:7654,10.0.104.79:7654,10.0.104.98:7654/fkp_test?currentSchema=fkp_test&autoBalance=roundrobin&targetServerType=slave
-      url: jdbc:opengauss://10.0.104.78:7654,10.0.104.79:7654,10.0.104.98:7654/fkp_test?currentSchema=fkp_test&autoBalance=leastconn&targetServerType=slave&enableQuickAutoBalance=true&maxIdleTimeBeforeTerminal=20&minReservedConPerCluster=20&minReservedConPerDatanode=20
+      url: jdbc:opengauss://10.20.44.65:7654,10.20.44.67:7654/seckmsfb?currentSchema=seckmsfb&autoBalance=leastconn&targetServerType=slave&enableQuickAutoBalance=true&maxIdleTimeBeforeTerminal=20&minReservedConPerCluster=20&minReservedConPerDatanode=20
       password: SWXA1234%DAR_Mysql
       username: fkp
 logging:
