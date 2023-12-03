@@ -21,6 +21,7 @@
         <module>mybatisplus_demos</module>
         <module>dynamic_sharding</module>
         <module>dynamic_mybatisplus</module>
+        <module>dynamic_table_name</module>
     </modules>
 
     <properties>
