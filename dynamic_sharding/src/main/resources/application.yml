@@ -2,6 +2,7 @@
 # 读写分离配置
 spring:
   autoconfigure:
+    # 启用sharding时需要排除掉Druid的自动配置类，否则报错
     exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
