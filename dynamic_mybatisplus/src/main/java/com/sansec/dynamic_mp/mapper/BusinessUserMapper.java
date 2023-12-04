@@ -7,6 +7,9 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 
+/**
+ * @author fengkunpeng
+ */
 public interface BusinessUserMapper extends BaseMapper<BusinessUser> {
 
 }

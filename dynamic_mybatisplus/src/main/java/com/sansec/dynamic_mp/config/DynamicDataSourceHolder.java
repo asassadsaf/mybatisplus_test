@@ -3,6 +3,9 @@ package com.sansec.dynamic_mp.config;
 import com.sansec.dynamic_mp.constant.DynamicDataSourceConstant;
 import com.sansec.dynamic_mp.constant.DynamicDataSourceGlobalEnum;
 
+/**
+ * @author fengkunpeng
+ */
 public class DynamicDataSourceHolder {
 
     private DynamicDataSourceHolder() {
@@ -13,8 +16,8 @@ public class DynamicDataSourceHolder {
     }
 
     public static DynamicDataSourceGlobalEnum getDataSource() {
-        Object tds = ThreadLocalUtil.get(DynamicDataSourceConstant.THREAD_DS_KEY);
-        return tds == null ? DynamicDataSourceGlobalEnum.WRITE : (DynamicDataSourceGlobalEnum) tds;
+        DynamicDataSourceGlobalEnum tds = ThreadLocalUtil.get(DynamicDataSourceConstant.THREAD_DS_KEY, DynamicDataSourceGlobalEnum.class);
+        return tds == null ? DynamicDataSourceGlobalEnum.WRITE : tds;
     }
 
 }
