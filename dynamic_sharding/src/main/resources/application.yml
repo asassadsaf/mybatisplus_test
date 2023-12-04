@@ -1,20 +1,34 @@
 
 # 读写分离配置
 spring:
+  autoconfigure:
+    exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/seckmsfb
+      password: SWXA1234@DAR_Mysql
+      username: root
   shardingsphere:
+    enabled: true
     datasource:
       names: writeDataSource,readDataSource
       writeDataSource:
-        driver-class-name: org.opengauss.Driver
-        url: jdbc:opengauss://10.20.44.65:7654,10.20.44.67:7654/seckmsfb?currentSchema=seckmsfb&targetServerType=master
-        password: SWXA1234%DAR_Mysql
-        username: fkp
+#        driver-class-name: org.opengauss.Driver
+#        url: jdbc:opengauss://10.20.44.65:7654,10.20.44.67:7654/seckmsfb?currentSchema=seckmsfb&targetServerType=master
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/seckmsfb
+        password: SWXA1234@DAR_Mysql
+        username: root
         type: com.alibaba.druid.pool.DruidDataSource
       readDataSource:
-        driver-class-name: org.opengauss.Driver
-        url: jdbc:opengauss://10.20.44.65:7654,10.20.44.67:7654/seckmsfb?currentSchema=seckmsfb&autoBalance=leastconn&targetServerType=slave&enableQuickAutoBalance=true&maxIdleTimeBeforeTerminal=20&minReservedConPerCluster=20&minReservedConPerDatanode=20
-        password: SWXA1234%DAR_Mysql
-        username: fkp
+#        driver-class-name: org.opengauss.Driver
+#        url: jdbc:opengauss://10.20.44.65:7654,10.20.44.67:7654/seckmsfb?currentSchema=seckmsfb&autoBalance=leastconn&targetServerType=slave&enableQuickAutoBalance=true&maxIdleTimeBeforeTerminal=20&minReservedConPerCluster=20&minReservedConPerDatanode=20
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/seckmsfb
+        password: SWXA1234@DAR_Mysql
+        username: root
         type: com.alibaba.druid.pool.DruidDataSource
     props:
       sql-show: true
@@ -27,11 +41,13 @@ spring:
               auto-aware-data-source-name: writeDataSource # 自动发现数据源名称（与数据库发现配合使用）
               write-data-source-name: writeDataSource # 写库数据源名称
               read-data-source-names: readDataSource # 读库数据源名称，多个从数据源用逗号分隔
-            loadBalancerName: ROUND_ROBIN # 负载均衡算法名称
+            loadBalancerName: ROUND_ROBIN # 负载均衡算法名称  参考ReadQueryLoadBalanceAlgorithm实现类
+
+
 
 #        # 负载均衡算法配置
 #        loadBalancers:
-#          <load-balancer-name> (+): # 负载均衡算法名称
+#          ROUND_ROBIN: # 负载均衡算法名称
 #            type: # 负载均衡算法类型
 #            props: # 负载均衡算法属性配置
 #            # ...

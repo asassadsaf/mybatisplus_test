@@ -9,6 +9,7 @@ import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.sql.DataSource;
@@ -16,14 +17,14 @@ import javax.sql.DataSource;
 /**
  * @author fengkunpeng
  */
-@SpringBootApplication(exclude = {DruidDataSourceAutoConfigure.class})
+@SpringBootApplication
 @MapperScan(basePackages = "com.sansec.dynamic.mapper")
 @EnableScheduling
 public class DynamicApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext run = SpringApplication.run(DynamicApplication.class, args);
-		DataSource bean = run.getBean(DataSource.class);
-		System.out.println(bean);
+		ConfigurableEnvironment environment = run.getEnvironment();
+
 	}
 
 }
