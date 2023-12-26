@@ -1,17 +1,28 @@
-package com.sansec.dynamic;
+package com.sansec.dynamic_mp;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.sansec.dynamic.entity.BusinessUser;
-import com.sansec.dynamic.mapper.BusinessUserMapper;
+import com.sansec.dynamic_mp.controller.BusinessUserController;
+import com.sansec.dynamic_mp.entity.BusinessUser;
+import com.sansec.dynamic_mp.mapper.BusinessUserMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
 class DynamicApplicationTests {
 
 	@Autowired
+	private BusinessUserController controller;
+
+	@Autowired
 	private BusinessUserMapper businessUserMapper;
+
+	//切面生效
+	@Test
+	void contextLoads() {
+		System.out.println(controller.save(BusinessUser.builder().id("001").build()));
+	}
 
 	@Test
 	void testInsert() {

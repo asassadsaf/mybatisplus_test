@@ -21,6 +21,9 @@ import org.springframework.transaction.support.TransactionTemplate;
 import javax.sql.DataSource;
 import java.util.Optional;
 
+/**
+ * @author fengkunpeng
+ */
 @AutoConfigureBefore(DruidDataSourceAutoConfigure.class)
 @Configuration
 @ConfigurationProperties(prefix = "spring.datasource.druid")

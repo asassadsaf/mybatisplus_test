@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Order(Ordered.LOWEST_PRECEDENCE - 1)
 public class DynamicAspect {
 
-    @Pointcut(value = "execution(public * com.sansec.dynamic_mp.controller.*.*(..)) && @annotation(org.springframework.transaction.annotation.Transactional)")
+    @Pointcut(value = "@annotation(org.springframework.transaction.annotation.Transactional)")
     public void dynamicPointCut(){}
 
     @Before(value = "dynamicPointCut()")

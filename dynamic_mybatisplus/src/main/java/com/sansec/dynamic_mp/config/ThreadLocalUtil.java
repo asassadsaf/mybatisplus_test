@@ -15,7 +15,6 @@ import java.util.Optional;
 public class ThreadLocalUtil {
     private static final ThreadLocal<Map<String, Object>> THREAD_LOCAL = new ThreadLocal<>();
 
-
     public static void set(String key, Object value) {
         Map<String, Object> map = getLocalMap();
         map.put(Optional.ofNullable(key).orElse(StringUtils.EMPTY), value);
@@ -29,7 +28,7 @@ public class ThreadLocalUtil {
     public static <T> T get(String key, Class<T> clazz) {
         Map<String, Object> map = getLocalMap();
         Object value = map.get(key);
-        return value != null ? (T) value : null;
+        return value != null ? clazz.cast(value) : null;
     }
 
     public static void remove() {
