@@ -8,17 +8,19 @@ package com.fkp.dynamic_table_name.utils;
  */
 public class DynamicTableNameUtils {
 
-    private static final ThreadLocal<Boolean> IS_KEY_OBJECT_HISTORY_TABLE = new ThreadLocal<>();
+    //t_user -> t_user1 - t_user3
+    private static final ThreadLocal<Integer> DYNAMIC_TABLE_T_USER = new ThreadLocal<>();
 
-    public static void applyKeyObjectHistoryTable(){
-        IS_KEY_OBJECT_HISTORY_TABLE.set(true);
+    public static void applyTable(int index){
+        DYNAMIC_TABLE_T_USER.set(index);
     }
 
-    public static void releaseKeyObjectHistoryTable(){
-        IS_KEY_OBJECT_HISTORY_TABLE.remove();
+    public static void releaseCurrTableName(){
+        //默认访问t_user1
+        DYNAMIC_TABLE_T_USER.set(1);
     }
 
-    public static Boolean getKeyObjectHistoryTable(){
-        return IS_KEY_OBJECT_HISTORY_TABLE.get();
+    public static String getCurrTableName(){
+        return "t_user" + DYNAMIC_TABLE_T_USER.get();
     }
 }

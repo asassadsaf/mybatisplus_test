@@ -9,6 +9,5 @@ package com.fkp.dynamic_table_name.constant;
 public class CommonConstants {
     private CommonConstants(){}
 
-    public static final String TABLE_KEY_OBJECT = "key_object";
-    public static final String TABLE_KEY_OBJECT_HISTORY = "key_object_history";
+    public static final String TABLE_KEY_OBJECT = "t_user";
 }

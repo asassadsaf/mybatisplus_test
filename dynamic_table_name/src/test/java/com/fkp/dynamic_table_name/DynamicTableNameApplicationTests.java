@@ -1,7 +1,8 @@
 package com.fkp.dynamic_table_name;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.fkp.dynamic_table_name.mapper.KeyObjectMapper;
+import com.fkp.dynamic_table_name.entity.User;
+import com.fkp.dynamic_table_name.mapper.UserMapper;
 import com.fkp.dynamic_table_name.utils.DynamicTableNameUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,22 +12,26 @@ import org.springframework.boot.test.context.SpringBootTest;
 class DynamicTableNameApplicationTests {
 
     @Autowired
-    private KeyObjectMapper keyObjectMapper;
+    private UserMapper userMapper;
 
     /**
      * 测试动态修改表名功能
      */
     @Test
     void contextLoads() {
-        //操作key_object表
-        System.out.println(keyObjectMapper.selectList(Wrappers.emptyWrapper()));
+        //手动切换到t_user2
+        DynamicTableNameUtils.applyTable(2);
+        System.out.println(userMapper.selectList(Wrappers.lambdaQuery(User.class).eq(User::getId, 1)));
 
-        //通过设置标志位实际操作key_object_history表
-        DynamicTableNameUtils.applyKeyObjectHistoryTable();
-        System.out.println(keyObjectMapper.selectList(Wrappers.emptyWrapper()));
+        //检查操作上次操作完后是否恢复到查询默认t_user
+        System.out.println(userMapper.selectList(Wrappers.emptyWrapper()));
 
-        //测试上述修改标志位后是否对原key_object表的操作造成影响
-        System.out.println(keyObjectMapper.selectList(Wrappers.emptyWrapper()));
+        //手动切换到t_user3
+        DynamicTableNameUtils.applyTable(3);
+        System.out.println(userMapper.selectList(Wrappers.emptyWrapper()));
+
+        //检查操作上次操作完后是否恢复到查询默认t_user
+        System.out.println(userMapper.selectList(Wrappers.emptyWrapper()));
 
     }
 
