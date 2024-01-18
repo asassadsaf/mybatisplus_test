@@ -6,8 +6,8 @@ spring:
       validation-query: SELECT 1
       url: jdbc:mysql://localhost:3306/test?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
       username: root
-      password: fkp123456
-#      password: SWXA1234@DAR_Mysql
+#      password: fkp123456
+      password: SWXA1234@DAR_Mysql
 logging:
   level:
-    root: debug
+    root: info
