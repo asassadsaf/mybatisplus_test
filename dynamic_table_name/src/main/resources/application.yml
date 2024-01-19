@@ -10,4 +10,4 @@ spring:
       password: SWXA1234@DAR_Mysql
 logging:
   level:
-    root: info
+    root: debug

@@ -36,7 +36,6 @@ public class MybatisPlusConfig {
                 DynamicTableNameUtils.releaseCurrTableName();
             }
             return tableName;
-            //这里也可以采用某种策略切换表名，例如t_user(id%3 + 1)
         });
         return dynamicTableNameInnerInterceptor;
     }
