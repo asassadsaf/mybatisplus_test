@@ -58,13 +58,47 @@ public class ConvertTest {
 
     @Test
     void testCompareTableName() throws IOException {
-        RandomAccessFile ras = new RandomAccessFile("C:\\Users\\fengkunpeng\\Desktop\\kms-mysql.sql", "r");
-        RandomAccessFile ras1 = new RandomAccessFile("C:\\Users\\fengkunpeng\\Desktop\\kms-dm.sql", "r");
-        Map<String, String> dm = getTableNames(ras);
-        Map<String, String> mysql = getTableNames(ras1);
+        RandomAccessFile ras = new RandomAccessFile("C:\\Users\\fengkunpeng\\Desktop\\seckmsfb_opengauss.sql", "r");
+        RandomAccessFile ras1 = new RandomAccessFile("C:\\Users\\fengkunpeng\\Desktop\\kms-opengauss.sql", "r");
+        Map<String, String> dm = getTableNames(ras1);
+        Map<String, String> mysql = getTableNames(ras);
         for (Map.Entry<String, String> entry : mysql.entrySet()) {
-            if (!dm.containsKey(entry.getKey().toLowerCase(Locale.ROOT))) {
+            boolean flag = false;
+            for (Map.Entry<String, String> dmEntry : dm.entrySet()) {
+                if (dmEntry.getKey().equalsIgnoreCase(entry.getKey())) {
+                    flag = true;
+                    break;
+                }
+            }
+            if(!flag){
                 System.out.println(entry.getKey());
+            }
+        }
+
+    }
+
+    @Test
+    void testCompareTableColumns() throws IOException {
+        RandomAccessFile ras = new RandomAccessFile("C:\\Users\\fengkunpeng\\Desktop\\seckmsfb_opengauss.sql", "r");
+        RandomAccessFile ras1 = new RandomAccessFile("C:\\Users\\fengkunpeng\\Desktop\\kms-opengauss.sql", "r");
+        Map<String, List<String>> file1 = getTableNamesAndColumns(ras);
+        Map<String, List<String>> file2 = getTableNamesAndColumns(ras1);
+        for (Map.Entry<String, List<String>> entry : file1.entrySet()) {
+            boolean flag = false;
+            for (Map.Entry<String, List<String>> entry2 : file2.entrySet()) {
+                if (entry2.getKey().equalsIgnoreCase(entry.getKey())) {
+                    List<String> value = entry.getValue();
+                    List<String> value2 = entry2.getValue();
+                    for (String line : value) {
+                        if (!value2.contains(line)) {
+                            System.out.println(line);
+                            flag = true;
+                        }
+                    }
+                }
+            }
+            if(flag){
+                System.out.println("---------------------" + entry.getKey() + "----------------------");
             }
         }
 
@@ -83,6 +117,42 @@ public class ConvertTest {
         }
         ras.seek(0);
         return tableInfos;
+    }
+
+    Map<String, List<String>> getTableNamesAndColumns(RandomAccessFile ras) throws IOException {
+        Map<String, List<String>> tableInfos = new HashMap<>();
+        String line;
+        while ((line = ras.readLine()) != null){
+            if(line.contains("CREATE TABLE ")){
+                String tableName = line.replaceAll("CREATE TABLE", "").replaceAll(" ", "").replaceAll("\\(", "").replaceAll("`", "").replaceAll("\"", "");
+                List<String> columns = new ArrayList<>();
+                while ((line = ras.readLine()) != null){
+                    if(!line.contains(" ") && (line.contains(")") || line.contains(";"))){
+                        break;
+                    }
+                    columns.add(line);
+                }
+                tableInfos.put(tableName, columns);
+            }
+        }
+        ras.seek(0);
+        return tableInfos;
+    }
+
+    String getColumnFromLine(String line){
+        String res = "";
+        boolean flag = false;
+        for (int i = 0; i < line.length(); i++) {
+            char c = line.charAt(i);
+            if(c == ' ' && flag){
+                break;
+            }
+            if(c != ' '){
+                res += c;
+                flag = true;
+            }
+        }
+        return res;
     }
 
     Map<String, String> getTablePrimaryKey(RandomAccessFile ras) throws IOException {
