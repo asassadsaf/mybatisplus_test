@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sansec.kms.zq.server.module.user.model.mapper.NasShareNonEncrypterMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sansec.kms.zq.server.module.user.model.entity.NasShareNonEncrypter">
+        <id column="nonEncId" property="nonEncId" />
+        <result column="nasId" property="nasId" />
+        <result column="fileServerId" property="fileServerId" />
+        <result column="status" property="status" />
+        <result column="displayName" property="displayName" />
+        <result column="shareType" property="shareType" />
+        <result column="nonEncrypter" property="nonEncrypter" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        nonEncId, nasId, fileServerId, `status`, displayName, shareType, nonEncrypter
+    </sql>
+
+</mapper>

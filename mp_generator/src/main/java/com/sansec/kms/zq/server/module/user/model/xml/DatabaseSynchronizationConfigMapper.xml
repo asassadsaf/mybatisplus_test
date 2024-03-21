@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sansec.kms.zq.server.module.user.model.mapper.DatabaseSynchronizationConfigMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sansec.kms.zq.server.module.user.model.entity.DatabaseSynchronizationConfig">
+        <id column="id" property="id" />
+        <result column="all_synchronized_ip" property="allSynchronizedIp" />
+        <result column="syn_status" property="synStatus" />
+        <result column="extend_1" property="extend1" />
+        <result column="extend_2" property="extend2" />
+        <result column="extend_3" property="extend3" />
+        <result column="remarks" property="remarks" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, all_synchronized_ip, syn_status, extend_1, extend_2, extend_3, remarks
+    </sql>
+
+</mapper>

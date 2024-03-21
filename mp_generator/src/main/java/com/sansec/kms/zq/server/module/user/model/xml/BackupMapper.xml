@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sansec.kms.zq.server.module.user.model.mapper.BackupMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sansec.kms.zq.server.module.user.model.entity.Backup">
+        <id column="iId" property="iId" />
+        <result column="cBackupName" property="cBackupName" />
+        <result column="cBackupDescription" property="cBackupDescription" />
+        <result column="cBackupPassword" property="cBackupPassword" />
+        <result column="cStorePath" property="cStorePath" />
+        <result column="cBackupSummary" property="cBackupSummary" />
+        <result column="dBackupTime" property="dBackupTime" />
+        <result column="iExtend" property="iExtend" />
+        <result column="cExtend" property="cExtend" />
+        <result column="cBackupDatabase" property="cBackupDatabase" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        iId, cBackupName, cBackupDescription, cBackupPassword, cStorePath, cBackupSummary, dBackupTime, iExtend, cExtend, cBackupDatabase
+    </sql>
+
+</mapper>

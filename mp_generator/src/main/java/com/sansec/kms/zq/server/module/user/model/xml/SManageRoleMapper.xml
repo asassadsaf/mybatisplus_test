@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sansec.kms.zq.server.module.user.model.mapper.SManageRoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sansec.kms.zq.server.module.user.model.entity.SManageRole">
+        <id column="R_ID" property="rId" />
+        <result column="R_NAME" property="rName" />
+        <result column="R_REMARKS" property="rRemarks" />
+        <result column="R_CREATEBY" property="rCreateby" />
+        <result column="R_CREATETIME" property="rCreatetime" />
+        <result column="R_EXTEND_1" property="rExtend1" />
+        <result column="R_EXTEND_2" property="rExtend2" />
+        <result column="R_EXTEND_3" property="rExtend3" />
+        <result column="R_USERGROUP_MD5" property="rUsergroupMd5" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        R_ID, R_NAME, R_REMARKS, R_CREATEBY, R_CREATETIME, R_EXTEND_1, R_EXTEND_2, R_EXTEND_3, R_USERGROUP_MD5
+    </sql>
+
+</mapper>

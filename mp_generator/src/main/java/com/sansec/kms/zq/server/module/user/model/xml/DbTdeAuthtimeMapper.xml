@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sansec.kms.zq.server.module.user.model.mapper.DbTdeAuthtimeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sansec.kms.zq.server.module.user.model.entity.DbTdeAuthtime">
+        <id column="db_auth_id" property="dbAuthId" />
+        <result column="db_tde_authtime_start" property="dbTdeAuthtimeStart" />
+        <result column="db_tde_authtime_end" property="dbTdeAuthtimeEnd" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        db_auth_id, db_tde_authtime_start, db_tde_authtime_end
+    </sql>
+
+</mapper>

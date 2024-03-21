@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sansec.kms.zq.server.module.user.model.mapper.DbInitMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sansec.kms.zq.server.module.user.model.entity.DbInit">
+        <id column="db_inst_id" property="dbInstId" />
+        <result column="db_type" property="dbType" />
+        <result column="db_ip" property="dbIp" />
+        <result column="db_port" property="dbPort" />
+        <result column="db_server_name" property="dbServerName" />
+        <result column="db_user" property="dbUser" />
+        <result column="db_user_psd" property="dbUserPsd" />
+        <result column="std_ip" property="stdIp" />
+        <result column="std_port" property="stdPort" />
+        <result column="plug_state" property="plugState" />
+        <result column="createby" property="createby" />
+        <result column="createdate" property="createdate" />
+        <result column="remarks" property="remarks" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        db_inst_id, db_type, db_ip, db_port, db_server_name, db_user, db_user_psd, std_ip, std_port, plug_state, createby, createdate, remarks
+    </sql>
+
+</mapper>

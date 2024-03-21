@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sansec.kms.zq.server.module.user.model.mapper.TdeDbuserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sansec.kms.zq.server.module.user.model.entity.TdeDbuser">
+        <id column="id" property="id" />
+        <result column="databaseid" property="databaseid" />
+        <result column="dbip" property="dbip" />
+        <result column="dbport" property="dbport" />
+        <result column="dbsid" property="dbsid" />
+        <result column="dbusername" property="dbusername" />
+        <result column="dbuserpwd" property="dbuserpwd" />
+        <result column="createby" property="createby" />
+        <result column="createtime" property="createtime" />
+        <result column="remarks" property="remarks" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, databaseid, dbip, dbport, dbsid, dbusername, dbuserpwd, createby, createtime, remarks
+    </sql>
+
+</mapper>

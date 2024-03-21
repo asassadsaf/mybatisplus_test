@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sansec.kms.zq.server.module.user.model.mapper.KmsServerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sansec.kms.zq.server.module.user.model.entity.KmsServer">
+        <id column="id" property="id" />
+        <result column="server" property="server" />
+        <result column="server_status" property="serverStatus" />
+        <result column="ip_authorization" property="ipAuthorization" />
+        <result column="is_keyserver" property="isKeyserver" />
+        <result column="ip" property="ip" />
+        <result column="port" property="port" />
+        <result column="pwd_auth" property="pwdAuth" />
+        <result column="clientcert_auth" property="clientcertAuth" />
+        <result column="trusted_ca_id" property="trustedCaId" />
+        <result column="server_certificate_id" property="serverCertificateId" />
+        <result column="use_ssl" property="useSsl" />
+        <result column="white_list" property="whiteList" />
+        <result column="server_username" property="serverUsername" />
+        <result column="server_userpwd" property="serverUserpwd" />
+        <result column="webapp_path" property="webappPath" />
+        <result column="kmsuser" property="kmsuser" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, `server`, server_status, ip_authorization, is_keyserver, ip, `port`, pwd_auth, clientcert_auth, trusted_ca_id, server_certificate_id, use_ssl, white_list, server_username, server_userpwd, webapp_path, kmsuser
+    </sql>
+
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sansec.kms.zq.server.module.user.model.mapper.SManagePersonBkMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sansec.kms.zq.server.module.user.model.entity.SManagePersonBk">
+        <id column="P_ID" property="pId" />
+        <result column="P_NAME" property="pName" />
+        <result column="P_PWD" property="pPwd" />
+        <result column="P_TEL" property="pTel" />
+        <result column="P_FAX" property="pFax" />
+        <result column="P_URL" property="pUrl" />
+        <result column="P_CERT" property="pCert" />
+        <result column="P_DN" property="pDn" />
+        <result column="P_SIGN" property="pSign" />
+        <result column="P_COUNTRY" property="pCountry" />
+        <result column="P_PROVINCE" property="pProvince" />
+        <result column="P_CITY" property="pCity" />
+        <result column="P_REMARKS" property="pRemarks" />
+        <result column="P_CREATEBY" property="pCreateby" />
+        <result column="P_CREATETIME" property="pCreatetime" />
+        <result column="P_ROLE" property="pRole" />
+        <result column="P_EXTEND_2" property="pExtend2" />
+        <result column="P_EXTEND_3" property="pExtend3" />
+        <result column="P_USERGROUP_MD5" property="pUsergroupMd5" />
+        <result column="P_lock" property="pLock" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        P_ID, P_NAME, P_PWD, P_TEL, P_FAX, P_URL, P_CERT, P_DN, P_SIGN, P_COUNTRY, P_PROVINCE, P_CITY, P_REMARKS, P_CREATEBY, P_CREATETIME, P_ROLE, P_EXTEND_2, P_EXTEND_3, P_USERGROUP_MD5, P_lock
+    </sql>
+
+</mapper>

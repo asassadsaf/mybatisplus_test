@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sansec.kms.zq.server.module.user.model.mapper.KeyServerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sansec.kms.zq.server.module.user.model.entity.KeyServer">
+        <id column="id" property="id" />
+        <result column="serverType" property="serverType" />
+        <result column="port" property="port" />
+        <result column="useSsl" property="useSsl" />
+        <result column="serverCert" property="serverCert" />
+        <result column="trustCA" property="trustCA" />
+        <result column="description" property="description" />
+        <result column="useAble" property="useAble" />
+        <result column="isCertAuth" property="isCertAuth" />
+        <result column="matchItem" property="matchItem" />
+        <result column="enccert" property="enccert" />
+        <result column="signcert" property="signcert" />
+        <result column="kmips" property="kmips" />
+        <result column="usepwd" property="usepwd" />
+        <result column="authentication" property="authentication" />
+        <result column="userAndPassword" property="userAndPassword" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, serverType, `port`, useSsl, serverCert, trustCA, `description`, useAble, isCertAuth, matchItem, enccert, signcert, kmips, usepwd, `authentication`, userAndPassword
+    </sql>
+
+</mapper>

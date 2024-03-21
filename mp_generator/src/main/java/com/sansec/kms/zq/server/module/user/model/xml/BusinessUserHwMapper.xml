@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sansec.kms.zq.server.module.user.model.mapper.BusinessUserHwMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sansec.kms.zq.server.module.user.model.entity.BusinessUserHw">
+        <id column="id" property="id" />
+        <result column="admin_permission" property="adminPermission" />
+        <result column="create_by" property="createBy" />
+        <result column="create_date" property="createDate" />
+        <result column="credentialType" property="credentialType" />
+        <result column="deviceIdentifier" property="deviceIdentifier" />
+        <result column="deviceSerialNumber" property="deviceSerialNumber" />
+        <result column="flag" property="flag" />
+        <result column="group_id" property="groupId" />
+        <result column="machineIdentifier" property="machineIdentifier" />
+        <result column="mediaIdentifier" property="mediaIdentifier" />
+        <result column="networkIdentifier" property="networkIdentifier" />
+        <result column="pwd" property="pwd" />
+        <result column="pwd_permission" property="pwdPermission" />
+        <result column="update_by" property="updateBy" />
+        <result column="update_date" property="updateDate" />
+        <result column="user_name" property="userName" />
+        <result column="certcn" property="certcn" />
+        <result column="certenddate" property="certenddate" />
+        <result column="cert" property="cert" />
+        <result column="group_flag" property="groupFlag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, admin_permission, create_by, create_date, credentialType, deviceIdentifier, deviceSerialNumber, flag, group_id, machineIdentifier, mediaIdentifier, networkIdentifier, pwd, pwd_permission, update_by, update_date, user_name, certcn, certenddate, cert, group_flag
+    </sql>
+
+</mapper>

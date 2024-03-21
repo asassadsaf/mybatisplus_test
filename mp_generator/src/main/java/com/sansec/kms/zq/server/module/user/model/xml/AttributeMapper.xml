@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sansec.kms.zq.server.module.user.model.mapper.AttributeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sansec.kms.zq.server.module.user.model.entity.Attribute">
+        <id column="id" property="id" />
+        <result column="AttributTyp" property="attributTyp" />
+        <result column="attributeIndex" property="attributeIndex" />
+        <result column="attributeName" property="attributeName" />
+        <result column="tag" property="tag" />
+        <result column="type" property="type" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        AttributTyp, id, attributeIndex, attributeName, tag, `type`
+    </sql>
+
+</mapper>

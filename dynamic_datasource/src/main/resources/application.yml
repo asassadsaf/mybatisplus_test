@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    remote-data-source:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/ccsp_kms?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+      username: root
+      password: SWXA1234@DAR_Mysql
+      connection-properties: password=${spring.datasource.remote-data-source.password}
+      password-callback-class-name: com.fkp.dynamic_datasource.config.MyDruidPasswordCallBack
+    local-data-source:
+      driver-class-name: org.sqlite.JDBC
+      url: jdbc:sqlite:D:\IDEAWorkSpace\mybatisplus_test\dynamic_datasource\sqlite\seckmsfb.db?date_string_format=yyyy-MM-dd HH:mm:ss
+      connection-properties: password=${spring.datasource.local-data-source.password}
+      password-callback-class-name: com.fkp.dynamic_datasource.config.MyDruidPasswordCallBack

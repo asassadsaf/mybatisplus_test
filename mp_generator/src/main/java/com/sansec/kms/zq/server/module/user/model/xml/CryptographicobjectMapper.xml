@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sansec.kms.zq.server.module.user.model.mapper.CryptographicobjectMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sansec.kms.zq.server.module.user.model.entity.Cryptographicobject">
+        <id column="id" property="id" />
+        <result column="s_UsageLimitsCount" property="sUsagelimitscount" />
+        <result column="s_UsageLimitsTotal" property="sUsagelimitstotal" />
+        <result column="s_UsageLimitsUnit" property="sUsagelimitsunit" />
+        <result column="s_activationDate" property="sActivationdate" />
+        <result column="s_compromiseDate" property="sCompromisedate" />
+        <result column="s_compromiseOccurrenceDate" property="sCompromiseoccurrencedate" />
+        <result column="s_cryptographicUsageMask" property="sCryptographicusagemask" />
+        <result column="s_deactivationDate" property="sDeactivationdate" />
+        <result column="s_destroyDate" property="sDestroydate" />
+        <result column="s_leaseTime" property="sLeasetime" />
+        <result column="s_processStartDate" property="sProcessstartdate" />
+        <result column="s_protectStopDate" property="sProtectstopdate" />
+        <result column="s_revocationMessage" property="sRevocationmessage" />
+        <result column="s_revocationReasonCode" property="sRevocationreasoncode" />
+        <result column="s_state" property="sState" />
+        <result column="keyBlock_id" property="keyblockId" />
+        <result column="s_rotationStatus" property="sRotationstatus" />
+        <result column="s_rotationStartTime" property="sRotationstarttime" />
+        <result column="s_alreadyRotate" property="sAlreadyrotate" />
+        <result column="s_keyVersion" property="sKeyversion" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        s_UsageLimitsCount, s_UsageLimitsTotal, s_UsageLimitsUnit, s_activationDate, s_compromiseDate, s_compromiseOccurrenceDate, s_cryptographicUsageMask, s_deactivationDate, s_destroyDate, s_leaseTime, s_processStartDate, s_protectStopDate, s_revocationMessage, s_revocationReasonCode, s_state, id, keyBlock_id, s_rotationStatus, s_rotationStartTime, s_alreadyRotate, s_keyVersion
+    </sql>
+
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sansec.kms.zq.server.module.user.model.mapper.SRootcaMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sansec.kms.zq.server.module.user.model.entity.SRootca">
+        <id column="id" property="id" />
+        <result column="certtype" property="certtype" />
+        <result column="createby" property="createby" />
+        <result column="createtime" property="createtime" />
+        <result column="customercode" property="customercode" />
+        <result column="encryptcert" property="encryptcert" />
+        <result column="endtime" property="endtime" />
+        <result column="hashalg" property="hashalg" />
+        <result column="issuer" property="issuer" />
+        <result column="publickey" property="publickey" />
+        <result column="serialnumber" property="serialnumber" />
+        <result column="signalg" property="signalg" />
+        <result column="starttime" property="starttime" />
+        <result column="user" property="user" />
+        <result column="verifycert" property="verifycert" />
+        <result column="version" property="version" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, certtype, createby, createtime, customercode, encryptcert, endtime, hashalg, `issuer`, publickey, serialnumber, signalg, starttime, `user`, verifycert, version
+    </sql>
+
+</mapper>
