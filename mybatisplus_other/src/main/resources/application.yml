@@ -2,14 +2,16 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
-#      driver-class-name: com.mysql.cj.jdbc.Driver
-#      url: jdbc:mysql://localhost:3306/seckmsfb?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
-#      username: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/seckmsfb?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+      username: root
+      # Base64.encode2String(pwd.getBytes())
+      password: U1dYQTEyMzRAREFSX015c3Fs
 #      password: SWXA1234@DAR_Mysql
-      driver-class-name: dm.jdbc.driver.DmDriver
-      url: jdbc:dm://10.20.44.65:5236?SCHEMA=SECKMSFB&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
-      username: SECKMSFB
-      password: SWXA1234%DAR_Mysql
+#      driver-class-name: dm.jdbc.driver.DmDriver
+#      url: jdbc:dm://10.20.44.65:5236?SCHEMA=SECKMSFB&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
+#      username: SECKMSFB
+#      password: SWXA1234%DAR_Mysql
 #      connectionProperties: connectTimeout=60000;socketTimeout=60000  #1.2.12版本配置失效
       connectTimeout: 60000  #1.2.12版本需要单独配置才生效
       socketTimeout: 60000   #1.2.12版本需要单独配置才生效
@@ -25,6 +27,10 @@ spring:
       testOnReturn: false
       poolPreparedStatements: true
       maxPoolPreparedStatementPerConnectionSize: 20
+      #指定密码回调类的全限定名
+      password-callback-class-name: com.fkp.conf.MyDruidPasswordCallBack
+      #通过connection-properties将原始密码传递给回调方法
+      connection-properties: password=${spring.datasource.druid.password}
 #      filters: stat,wall
 
 mybatis:

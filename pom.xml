@@ -22,6 +22,7 @@
         <module>dynamic_sharding</module>
         <module>dynamic_mybatisplus</module>
         <module>dynamic_table_name</module>
+        <module>dynamic_datasource</module>
     </modules>
 
     <properties>
