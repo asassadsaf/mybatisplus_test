@@ -24,7 +24,7 @@ public class MybatisPlusUtils {
      * @return
      * @param <T>
      */
-    public <T> String getColumnNameByRef(SFunction<T, ?> func) {
+    public static <T> String getColumnNameByRef(SFunction<T, ?> func) {
         LambdaMeta lambdaMeta = LambdaUtils.extract(func);
         Map<String, ColumnCache> columnMap = LambdaUtils.getColumnMap(lambdaMeta.getInstantiatedClass());
         String fieldName = PropertyNamer.methodToProperty(lambdaMeta.getImplMethodName());

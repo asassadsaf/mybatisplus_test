@@ -1,5 +1,7 @@
 package com.fkp.util;
 
+import com.sansec.util.ByteUtil;
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +21,8 @@ public class StrIdGenerator {
 
 
     // 每一部分占用的位数
-    private static final int SEQUENCE_BIT = 9; //序列号占用的位数
-    private static final int MACHINE_BIT = 32;   //机器标识占用的位数
+    private static final int SEQUENCE_BIT = 12; //序列号占用的位数
+    private static final int MACHINE_BIT = 10;   //机器标识占用的位数
 
     // 每一部分的最大值
     private static final long MAX_SEQUENCE = -1L ^ (-1L << SEQUENCE_BIT);
@@ -122,7 +124,7 @@ public class StrIdGenerator {
     private static int getMachineId() {
         Integer uuid = UUID.randomUUID().hashCode();
         uuid = uuid < 0 ? -uuid : uuid;
-        return uuid;
+        return uuid %1024;
     }
 
     public static synchronized StrIdGenerator getInstance() {

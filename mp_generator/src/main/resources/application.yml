@@ -3,7 +3,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/seckmsfb?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+      url: jdbc:mysql://localhost:3306/ccsp_kms?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
 #      driver-class-name: org.postgresql.Driver
 #      url: jdbc:postgresql://192.168.200.200/postgres
       username: root
@@ -12,6 +12,6 @@ spring:
 generator:
   author: fengkunpeng
   outPutDir: D:\IDEAWorkSpace\mybatisplus_test\mp_generator\src\main\java
-  parentPackage: com.sansec.kms.zq.server.module.user.model
+  parentPackage: com.sansec.kms.modules.key
   tableNames:
-    - gauss_person_byte
+    - key_node_template

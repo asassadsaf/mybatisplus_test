@@ -3,8 +3,9 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
 #      driver-class-name:  org.postgresql.Driver
-      driver-class-name: com.mysql.cj.jdbc.Driver
+#      driver-class-name: com.mysql.cj.jdbc.Driver
 #      driver-class-name: org.sqlite.JDBC
+      driver-class-name: com.huawei.opengauss.jdbc.Driver
 #      driver-class-name: org.h2.Driver
 #      driver-class-name: dm.jdbc.driver.DmDriver
 #      driver-class-name: com.kingbase8.Driver
@@ -12,14 +13,15 @@ spring:
 #      url: jdbc:h2:D:\IDEAWorkSpace\mybatisplus_test\mybatisplus_demos\h2\seckmsfb;AUTO_SERVER=TRUE
 #      url: jdbc:h2:mem:seckmsfb
 #      url: jdbc:postgresql://10.0.101.11:5432/fkp_test6?currentSchema=ccsp_storage
-      validation-query: SELECT 1
-      url: jdbc:mysql://10.0.102.98:3306/ccsp_kms?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
-#      url: jdbc:sqlite:sqlite/seckmsfb.db?date_string_format=yyyy-MM-dd HH:mm:ss
-#      url: jdbc:kingbase8://10.0.103.14:54321/CCSP?currentSchema=CCSP_KMS
+#      validation-query: SELECT 1
+#      url: jdbc:mysql://10.0.102.98:3306/ccsp_kms?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+#      url: jdbc:sqlite:D:\IDEAWorkSpace\mybatisplus_test\mybatisplus_demos\sqlite\sqlite3.db?date_string_format=yyyy-MM-dd HH:mm:ss
+      url: jdbc:opengauss://10.0.120.91:5432,10.0.120.92:5432/sansec?currentSchema=ccsp_kms_7008988137775566466&targetServerType=master
+  #      url: jdbc:kingbase8://10.0.103.14:54321/CCSP?currentSchema=CCSP_KMS
 #      url: jdbc:dm://10.0.103.12:5236?schema=ccsp_kms&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
 #      username: root
 #      password: SWXA1234@DAR_Mysql
-      username: root
+      username: sansec
       password: swxa@2023
   #      username: SYSDBA
 #      password: swxa1234.
@@ -34,13 +36,13 @@ spring:
 
   sql:
     init:
-      schema-locations: classpath*:sql/seckmsfb_h2_DDL.sql #项目启动执行sql文件，对应DDL
-      #data-locations: classpath*:sql/seckmsfb_h2_DML.sql #项目启动执行sql文件，对应DML
+      schema-locations: classpath*:sql/sqlite3_DDL.sql #项目启动执行sql文件，对应DDL
+      data-locations: classpath*:sql/sqlite3_DML.sql #项目启动执行sql文件，对应DML
       mode: embedded  #初始化模式，默认EMBEDDED仅初始化嵌入式数据库,对于h2数据库需采用内存模式
 mybatis-plus:
   mapper-locations:
     - classpath:mappers/*.xml
-  type-handlers-package: com.fkp.type_handler
+#  type-handlers-package: com.fkp.type_handler
 #  configuration:
 #    map-underscore-to-camel-case: false
 #  global-config:
@@ -50,4 +52,4 @@ mybatis:
   databaseType: mysql
 logging:
   level:
-    root: off
+    root: info

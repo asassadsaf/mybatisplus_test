@@ -54,7 +54,7 @@ public class MpGeneratorApplication {
 
 
         StrategyConfig strategyConfig = new StrategyConfig.Builder()
-//                .addInclude(configProperties.getTableNames())
+                .addInclude(configProperties.getTableNames())
                 .entityBuilder()
                 .enableLombok()
                 .mapperBuilder()

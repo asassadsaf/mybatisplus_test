@@ -28,7 +28,11 @@
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.gauss.opengauss</groupId>
+            <artifactId>jdbc</artifactId>
+            <version>5.0.1</version>
+        </dependency>
 
     </dependencies>
 

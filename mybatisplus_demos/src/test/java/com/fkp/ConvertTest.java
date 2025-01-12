@@ -79,10 +79,12 @@ public class ConvertTest {
 
     @Test
     void testCompareTableColumns() throws IOException {
-        RandomAccessFile ras = new RandomAccessFile("C:\\Users\\fengkunpeng\\Desktop\\seckmsfb_opengauss.sql", "r");
-        RandomAccessFile ras1 = new RandomAccessFile("C:\\Users\\fengkunpeng\\Desktop\\kms-opengauss.sql", "r");
+        RandomAccessFile ras = new RandomAccessFile("C:\\Users\\fengkunpeng\\Desktop\\bb.sql", "r");
+        RandomAccessFile ras1 = new RandomAccessFile("C:\\Users\\fengkunpeng\\Desktop\\kms_4.0.sql", "r");
         Map<String, List<String>> file1 = getTableNamesAndColumns(ras);
         Map<String, List<String>> file2 = getTableNamesAndColumns(ras1);
+//        System.out.println(file1);
+//        System.out.println(file2);
         for (Map.Entry<String, List<String>> entry : file1.entrySet()) {
             boolean flag = false;
             for (Map.Entry<String, List<String>> entry2 : file2.entrySet()) {
@@ -90,10 +92,21 @@ public class ConvertTest {
                     List<String> value = entry.getValue();
                     List<String> value2 = entry2.getValue();
                     for (String line : value) {
-                        if (!value2.contains(line)) {
+                        boolean containsFlag = false;
+                        for (String line2 : value2) {
+                            if((line2.trim().split(" ")[0]).equalsIgnoreCase(line.trim().split(" ")[0])){
+                                containsFlag = true;
+                                break;
+                            }
+                        }
+                        if(!containsFlag){
                             System.out.println(line);
                             flag = true;
                         }
+//                        if (!value2.contains(line.trim().split(" ")[0].toLowerCase(Locale.ROOT))) {
+//                            System.out.println(line);
+//                            flag = true;
+//                        }
                     }
                 }
             }
